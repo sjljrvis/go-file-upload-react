@@ -26887,7 +26887,7 @@ var HomeContainer = function (_Component) {
             _react2.default.createElement('br', null),
             'personal information.Ever'
           ),
-          _react2.default.createElement('img', { style: { width: 215, height: 185, textAlign: "center" }, src: '/assets/owl.png' })
+          _react2.default.createElement('img', { style: { width: 215, height: 185, textAlign: "center" }, src: './assets/owl.png' })
         ),
         _react2.default.createElement('div', { style: style.appContainer3 }),
         _react2.default.createElement('div', { style: style.appContainer4 })

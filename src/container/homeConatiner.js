@@ -47,7 +47,7 @@ class HomeContainer extends Component {
         <div style={style.appContainer2}>
           <br />
           <h1 style={{ textAlign: "center", fontWeight: "bold", paddingTop: 35 }}>We don’t store your <br />personal information.Ever</h1>
-          <img style={{ width: 215, height: 185, textAlign: "center" }} src="/assets/owl.png" />
+          <img style={{ width: 215, height: 185, textAlign: "center" }} src="./assets/owl.png" />
         </div>
         <div style={style.appContainer3}>
         </div>
