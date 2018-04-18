@@ -10,7 +10,9 @@ import * as appAction from '../store/action/appAction';
 import * as uploadAction from '../store/action/uploadAction';
 import { height } from 'window-size';
 
-import { Jumbotron, Button } from 'react-bootstrap';
+import { Jumbotron, Button, Glyphicon } from 'react-bootstrap';
+
+import HomeContainer from './homeConatiner';
 
 const propTypes = {
 	appReducer: PropTypes.object.isRequired,
@@ -37,20 +39,7 @@ class AppContainer extends Component {
 	render() {
 		return (
 			<div>
-				<div style={style.appContainer1}>
-					<h1 style={{textAlign:"center"}}>File upload and search service</h1>
-					<div style={{ padding: "10% 0",marginLeft:"auto",marginRight:"auto",width:"80%",textAlign: "center"}}>
-						<input style={style.input} type="text" placeholder="Search.."/>
-						{/* <img src="/assets/search.png"style={{width:50,height:50}}/> */}
-						<button style={{background:"#7BC9F7",color:"#FFFFFF",height:52,border:0,boxShadow:"none",borderRadius:0}}>search</button>
-					</div>
-				</div>
-				<div style={style.appContainer2}>
-				</div>
-				<div style={style.appContainer3}>
-				</div>
-				<div style={style.appContainer4}>
-				</div>
+				<HomeContainer />
 				<Switch>
 				</Switch>
 			</div>
@@ -72,15 +61,15 @@ const style = {
 
 	input: {
 		height: 52,
-		minWidth:350,
-		maxWidth:500,
+		minWidth: 350,
+		maxWidth: 500,
 		width: "auto"
 	},
 
 	dialogTest: {
 		backgroundColor: "#efefef",//"#00182E",
 		height: "100vh",
-		width:"100%"
+		width: "100%"
 	},
 	appContainer1: {
 		padding: "5% 0",
