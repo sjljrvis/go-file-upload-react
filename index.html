@@ -2,53 +2,87 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel=stylesheet>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-	<link rel=stylesheet href="//fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	 crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	 crossorigin="anonymous">
-
-	<title>Go-file upload</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+  <title>tocstack</title>
 </head>
 
 <body style="height:100%">
-	<div id="app"></div>
-	<script src="bundle.js"></script>
+  <div id="app"></div>
+  <script src="bundle.js"></script>
 </body>
+
 <style>
-	body {
-		font-family: Open Sans, sans-serif;
-		font-size: 15px;
-		font-weight: 700;
-		font-style: normal;
-		font-variant: normal;
-		text-transform: none;
-	}
+  body,
+  header,
+  footer {
+    font-weight: lighter;
+    font-family: "Source Sans Pro", Helvetica, sans-serif
+  }
 
-	input {
-		border-color: #e2e2e2;
-		border-bottom-style: outset;
-		border-width: 1px;
-		/* box-shadow: none;
-		border-radius: 0px; */
-	}
+  .headerbutton {
+    background: white;
+    border-style: solid;
+    border-color: #ff5722;
+    color: #ff5722;
+    width: 70px;
+    font-size: 15px;
+    height: 30px;
+    font-weight: 700;
+    border-width: thin;
+  }
 
-	/* input {
-    border: 0;
-    border-radius: 0;
-    background: none;
-    -webkit-appearance: none;
-} */
+  .headerbutton:hover {
+    background: #ff5722;
+    color: white;
+  }
 
-	/* ::-webkit-scrollbar {
-		width: 20px;
-		color: black
-	} */
+  .heroButton {
+    border-style: hidden;
+    background: #ff5722;
+    color: white;
+    font-size: xx-large;
+    height: 55px;
+    width: 150px;
+    margin-top: 50px
+  }
+
+  p {
+    line-height: 1.5em;
+    color: #666;
+    font-size: 1.7em;
+    font-weight: 200
+  }
+
+  h4 {
+    color: #666;
+    font-weight: 300
+  }
+
+  h6 {
+    color: #666;
+  }
+
+  h3 {
+    color: #666;
+    font-weight: 300
+  }
+
+  h1 {
+    line-height: 1.2em;
+    color: #666;
+  }
+
+  .hero h1 {
+    line-height: 1.2em;
+    margin-bottom: 0;
+  }
 </style>
 
 </html>

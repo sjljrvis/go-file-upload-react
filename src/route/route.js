@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 //container
-import AppContainer from '../container/appContainer';
+import App from '../container/App';
 export default (
- <AppContainer>
-</AppContainer>
+ <App>
+</App>
 );
