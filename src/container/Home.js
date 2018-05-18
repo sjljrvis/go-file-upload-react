@@ -103,7 +103,10 @@ class HomeContainer extends Component {
             <h1 style={{ color: "#ff5722", fontWeight: "lighter", textAlign: "center", fontSize: "3em" }}>Quick Demo</h1>
             <Grid style={{ width: "60%", marginTop: 0 }}>
               <Row>
-                <h4 style={{ fontWeight: "lighter", textAlign: "center", fontSize: "2em" }}>1 . Create new App</h4>
+                <h4 style={{ fontWeight: "lighter", textAlign: "left", fontSize: "2em", fontWeight: "bolder" }}>1 . Create new App</h4>
+              </Row>
+              <Row>
+                <p style={{ textAlign: "left" }}>Login to tocstack and click new app ,choose your preferred programming language and click create</p>
               </Row>
               <Row style={{ textAlign: "center" }}>
                 <img src="../../assets/demo1.png" style={{ height: "80%", width: "80%" }} className="image-box" />
@@ -112,9 +115,12 @@ class HomeContainer extends Component {
           </div>
 
           <div style={{ backgroundColor: "#FAFAFC", marginTop: 30 }}>
-            <Grid style={{ width: "60%", paddingBottom: 30 ,paddingTop:30 }}>
+            <Grid style={{ width: "60%", paddingBottom: 30, paddingTop: 30 }}>
               <Row>
-                <h4 style={{ fontWeight: "lighter", textAlign: "center", fontSize: "2em" }}>2 . Code your app</h4>
+                <h4 style={{ fontWeight: "lighter", textAlign: "left", fontSize: "2em", fontWeight: "bolder" }}>2 . Code your app</h4>
+              </Row>
+              <Row>
+                <p style={{ textAlign: "left" }}>This is the best part ☺ ,given example is simple a helloworld app written in nodeJS</p>
               </Row>
               <Row style={{ textAlign: "center" }}>
                 <img src="../../assets/demo2.png" style={{ height: "80%", width: "80%" }} className="image-box" />
@@ -124,9 +130,19 @@ class HomeContainer extends Component {
 
 
           <div style={{ marginTop: 30 }}>
-            <Grid style={{ width: "60%"}}>
+            <Grid style={{ width: "60%" }}>
               <Row>
-                <h4 style={{ fontWeight: "lighter", textAlign: "center", fontSize: "2em" }}>3 . Deploy with git</h4>
+                <h4 style={{ fontWeight: "lighter", textAlign: "left", fontSize: "2em", fontWeight: "bolder" }}>3 . Deploy with git</h4>
+              </Row>
+              <Row>
+                <p style={{ textAlign: "left" }}>Automated deployment goodness, just git push to see your app/service online</p>
+              </Row>
+              <Row>
+                <ul>
+                  <li><h4>Write code</h4></li>
+                  <li><h4>git push tocstack master</h4></li>
+                  <li><h4>App is online 😃</h4></li>
+                </ul>
               </Row>
               <Row style={{ textAlign: "center" }}>
                 <img src="../../assets/demo3.png" style={{ height: "80%", width: "80%" }} className="image-box" />
@@ -139,7 +155,10 @@ class HomeContainer extends Component {
             <hr style={{ borderColor: "#d8d7d7", width: "60%" }} />
             <Grid style={{ width: "60%", marginTop: 0 }}>
               <Row>
-                <h1 style={{ color: "#ff5722", fontWeight: "lighter", textAlign: "center", fontSize: "3em" }}> tocstack CLI</h1>
+                <h1 style={{ color: "#ff5722", fontWeight: "lighter", textAlign: "center", fontSize: "3em", }}> tocstack CLI</h1>
+              </Row>
+              <Row>
+                <p style={{ textAlign: "left" }}>Easy to use cli to keep eye on your deployed apps .Enter <span>tocstack</span> to get started</p>
               </Row>
               <Row style={{ textAlign: "center" }}>
                 <img src="../../assets/cli1.png" style={{ height: "80%", width: "80%" }} className="image-box" />
