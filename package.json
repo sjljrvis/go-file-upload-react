@@ -7,7 +7,7 @@
     "develop": "webpack-dev-server --open --mode development --config webpack.config.js",
     "start": "webpack-dev-server --hot",
     "dev": "webpack-dev-server --hot",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.prod.js"
   },
   "author": "sejal chougule",
   "license": "ISC",
@@ -45,7 +45,9 @@
     "redux": "^3.5.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "rxjs": "^5.5.8"
+    "rxjs": "^5.5.8",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "webpack-merge": "^4.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

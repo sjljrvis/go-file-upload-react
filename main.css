@@ -43,11 +43,14 @@ footer {
   width: 150px;
   margin-top: 50px
 }
-
+span{
+  color: #ff5722;  
+}
 p {
+  text-align: center;
   line-height: 1.5em;
   color: #666;
-  font-size: 1.7em;
+  font-size: 1.5em;
   font-weight: 200
 }
 
@@ -83,7 +86,7 @@ h1 {
   border-style: solid;
   border-width: thin;
   border-color: #ff5722;
-  margin-top: 30px;
+  margin-top: 35px;
   background: white;
   justify-content: center;
   margin-right: 5px;
@@ -101,6 +104,13 @@ h1 {
 .nav-mobile {
   display:none;
 }
+
+.image-box{
+  border: #d8d7d7;
+    border-style: solid;
+    border-width: thin;
+}
+
 @media only screen and (min-width: 320px) and (max-width: 768px) {
   .nav-list {
     display:none;

@@ -35,6 +35,7 @@ class Header extends Component {
           <Row className="show-grid">
             <Col xs={6} md={8} >
               <div style={{ display: "flex", flexDirection: " row", justifyContent: "flex-start", height: 50 }}>
+                <img src="../../assets/rocket.svg"  style={{width:"40px",height:"40px",marginTop:20,marginRight:5}}/>
                 <h1>tocstack</h1>
               </div>
             </Col>
