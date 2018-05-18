@@ -22,6 +22,18 @@ footer {
   color: white;
 }
 
+.navbar-mobile-button {
+  background: #ff5722;
+  color: white;
+  border-style: solid;
+  border-color: #ff5722;
+  width: 70px;
+  font-size: 15px;
+  height: 30px;
+  font-weight: 700;
+  border-width: thin;
+}
+
 .heroButton {
   border-style: hidden;
   background: #ff5722;
@@ -57,8 +69,43 @@ h1 {
   line-height: 1.2em;
   color: #666;
 }
+.hamburger-icon{
+  border-style: solid;
+  background: #ffff;
+  border: #fff;
+}
+
+.hamburger-list{
+  width: 100px;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-width: thin;
+  border-color: #ff5722;
+  margin-top: 30px;
+  background: white;
+  justify-content: center;
+  margin-right: 5px;
+  padding-bottom: 5px
+  
+}
 
 .hero h1 {
   line-height: 1.2em;
   margin-bottom: 0;
+}
+.nav-list {
+  display:block;
+}
+.nav-mobile {
+  display:none;
+}
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+  .nav-list {
+    display:none;
+  }
+  .nav-mobile {
+    display:block;
+  }
 }

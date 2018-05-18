@@ -12,7 +12,7 @@ module.exports = {
   },
   devServer: {
     inline: true,
-    port: 8081,
+    port: 8082,
     watchContentBase: true,
     headers: {
       "Access-Control-Allow-Origin": "*",

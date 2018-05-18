@@ -26678,7 +26678,14 @@ var Header = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
 
-    _this.state = {};
+    _this.showDropdownlist = function () {
+      var _showList = _this.state.showList ? false : true;
+      _this.setState({ showList: _showList });
+    };
+
+    _this.state = {
+      showList: false
+    };
     return _this;
   }
 
@@ -26688,6 +26695,8 @@ var Header = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var showList = this.state.showList;
+
       return _react2.default.createElement(
         'header',
         null,
@@ -26712,14 +26721,60 @@ var Header = function (_Component) {
             ),
             _react2.default.createElement(
               _reactBootstrap.Col,
-              { xs: 6, md: 4 },
+              { xs: 6, md: 4, className: 'nav-list' },
               _react2.default.createElement(
                 'div',
                 { style: { display: "flex", flexDirection: " row", justifyContent: "space-evenly", height: 50, marginTop: 30 } },
                 _react2.default.createElement(
+                  'h4',
+                  null,
+                  'Blogs'
+                ),
+                _react2.default.createElement(
+                  'h4',
+                  null,
+                  'Guide'
+                ),
+                _react2.default.createElement(
                   'button',
                   { className: 'headerbutton' },
                   'login'
+                )
+              )
+            ),
+            _react2.default.createElement(
+              _reactBootstrap.Col,
+              { xs: 6, md: 4, className: 'nav-mobile' },
+              _react2.default.createElement(
+                'div',
+                { style: { display: "flex", flexDirection: "row", justifyContent: "flex-end", height: 50, marginTop: 20 } },
+                showList ? _react2.default.createElement(
+                  'div',
+                  { className: 'hamburger-list' },
+                  _react2.default.createElement(
+                    'h4',
+                    { style: { textAlign: "center" } },
+                    'Blogs'
+                  ),
+                  _react2.default.createElement(
+                    'h4',
+                    { style: { textAlign: "center" } },
+                    'Guide'
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { style: { textAlign: "center" } },
+                    _react2.default.createElement(
+                      'button',
+                      { style: { textAlign: "center" }, className: 'navbar-mobile-button ' },
+                      'login'
+                    )
+                  )
+                ) : null,
+                _react2.default.createElement(
+                  'button',
+                  { className: 'hamburger-icon' },
+                  _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'menu-hamburger', onClick: this.showDropdownlist })
                 )
               )
             )
