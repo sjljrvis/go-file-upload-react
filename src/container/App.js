@@ -13,7 +13,7 @@ import { height } from 'window-size';
 import { Jumbotron, Button, Glyphicon } from 'react-bootstrap';
 
 import Home from './Home';
-
+import Dashboard from './Dashboard'
 class AppContainer extends Component {
 
 	constructor(props) {
@@ -29,8 +29,9 @@ class AppContainer extends Component {
 	render() {
 		return (
 			<div>
-				<Home />
 				<Switch>
+					<Route exact path="/d" component={Home} /> 
+					<Route exact path="/" component={Dashboard} />
 				</Switch>
 			</div>
 		)

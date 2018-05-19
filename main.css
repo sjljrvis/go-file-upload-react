@@ -22,7 +22,7 @@ footer {
   color: white;
 }
 
-.navbar-mobile-button {
+.navbar-mobile-button , .normal-button {
   background: #ff5722;
   color: white;
   border-style: solid;
@@ -43,12 +43,31 @@ footer {
   width: 150px;
   margin-top: 50px
 }
-
+.avatar-button{
+  height: 40px;
+  width: 40px;
+  border-style: solid;
+  border-radius: 50%;
+  border:#d8d7d7;
+  background-color: #fff
+}
 .tocstack-button{
   border-style: hidden;
   background: #ff5722;
   color: white;
   font-size: 30px
+}
+
+
+.applist:hover{
+  background: #f1f1f1
+}
+.search-box{
+  width: -webkit-fill-available;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 4px;
+    border-color: #d8d7d7;
 }
 span{
   color: #ff5722;  

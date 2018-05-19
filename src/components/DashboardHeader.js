@@ -12,7 +12,7 @@ import { height } from 'window-size';
 
 import { Grid, Row, Col, Glyphicon, ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
 
-class Header extends Component {
+class DashboardHeader extends Component {
 
   constructor(props) {
     super(props);
@@ -26,43 +26,39 @@ class Header extends Component {
   }
   componentDidMount() {
   }
-
   render() {
     const { showList } = this.state;
     return (
       <header>
         <Grid>
           <Row className="show-grid">
-            <Col xs={6} md={8} >
+            <Col xs={12} md={4} >
               <div style={{ display: "flex", flexDirection: " row", justifyContent: "flex-start", height: 50 }}>
-                <img src="../../assets/rocket.svg"  style={{width:"40px",height:"40px",marginTop:20,marginRight:5}}/>
+                <img src="../../assets/rocket.svg" style={{ width: "40px", height: "40px", marginTop: 20, marginRight: 5 }} />
                 <h1>tocstack</h1>
               </div>
             </Col>
-            <Col xs={6} md={4} className="nav-list">
-              <div style={{ display: "flex", flexDirection: " row", justifyContent: "space-evenly", height: 50, marginTop: 30 }}>
-                <h4>Blogs</h4>
-                <h4>Docs</h4>
-                <button className="headerbutton">login</button>
+            <Col xs={8} md={4} >
+              <div className="search-box" style={{ display: "flex", flexDirection: " row", justifyContent: "flex-end", height: 40, marginTop: 24, paddingLeft: 20 }}>
+                <input style={{ width: "-webkit-fill-available", borderStyle: "unset", outline: "none" }}></input>
+                <Glyphicon glyph="search" style={{ paddingTop: 10, paddingRight: 7 }} />
               </div>
-            </Col >
-            <Col xs={6} md={4} className="nav-mobile">
-              <div style={{ display: "flex", flexDirection: "row", justifyContent: "flex-end", height: 50, marginTop: 20 }}>
+            </Col>
+            <Col xs={4} md={4}>
+              <div style={{ display: "flex", flexDirection: " row", justifyContent: "flex-end", height: 50, marginTop: 25 }}>
                 {
                   showList ?
                     <div className="hamburger-list">
-                      <h4 style={{ textAlign: "center" }}>Blogs</h4>
-                      <h4 style={{ textAlign: "center" }}>Docs</h4>
+                      <h4 style={{ textAlign: "center" }}>Profile</h4>
+                      <h4 style={{ textAlign: "center" }}>Settings</h4>
                       <div style={{ textAlign: "center" }}>
-                        <button style={{ textAlign: "center" }} className="navbar-mobile-button ">login</button>
+                        <button style={{ textAlign: "center" }} className="navbar-mobile-button ">logout</button>
                       </div>
                     </div> : null
                 }
-                <button className="hamburger-icon">
-                  <Glyphicon glyph="menu-hamburger" onClick={this.showDropdownlist} />
-                </button>
+                <button className="avatar-button" onClick={this.showDropdownlist}><img src="../../assets/sejal.png" style={{ height: 40, width: 40 }} /></button>
               </div>
-            </Col>
+            </Col >
           </Row>
         </Grid>
         <hr style={{ borderColor: "#d8d7d7" }} />
@@ -71,4 +67,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default DashboardHeader;
