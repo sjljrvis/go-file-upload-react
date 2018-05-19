@@ -43,6 +43,13 @@ footer {
   width: 150px;
   margin-top: 50px
 }
+
+.tocstack-button{
+  border-style: hidden;
+  background: #ff5722;
+  color: white;
+  font-size: 30px
+}
 span{
   color: #ff5722;  
 }
