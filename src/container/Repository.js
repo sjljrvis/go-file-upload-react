@@ -13,7 +13,7 @@ import { Grid, Row, Col, Tabs, Tab } from 'react-bootstrap';
 
 import DashboardHeader from '../components/DashboardHeader'
 import Footer from '../components/Footer'
-
+import Deploy from './Deploy'
 class RepositoryContainer extends Component {
 
   constructor(props) {
@@ -41,10 +41,11 @@ class RepositoryContainer extends Component {
   }
 
   render() {
+    let { active } = this.state;
     return (
       <div>
         <DashboardHeader />
-        <div style={{ height: "100vh" }}>
+        <div style={{  }}>
           <Grid>
             <Row style={{}}>
               <Col xs={6} md={6}>
@@ -63,6 +64,7 @@ class RepositoryContainer extends Component {
               <Grid>
                 <Row>
                   <div style={{ display: "flex", flexDirection: "row", }}>
+
                     <div className={this.state.active[0] ? 'nav-bar-div-active' : "nav-bar-div"}
                       onClick={() => { this.toggleClass(0) }}
                     >
@@ -88,12 +90,38 @@ class RepositoryContainer extends Component {
                     </div>
 
                   </div>
-
                 </Row>
               </Grid>
               <hr style={{ borderColor: "#d8d7d7", marginTop: 0 }} />
             </div>
+            <Grid>
+              <Row>
+                {active[0] ?
+                  <div>
+                    <h1>Overview</h1>
+                  </div> : null
+                }
 
+                {active[1] ?
+                  <div>
+                    <Deploy />
+                  </div> : null
+                }
+
+                {active[2] ?
+                  <div>
+                    <h1>Metrics</h1>
+
+                  </div> : null
+                }
+
+                {active[3] ?
+                  <div>
+                    <h1>Settings</h1>
+                  </div> : null
+                }
+              </Row>
+            </Grid>
           </Grid>
         </div>
         <footer>
