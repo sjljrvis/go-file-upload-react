@@ -14,6 +14,7 @@ import { Jumbotron, Button, Glyphicon } from 'react-bootstrap';
 
 import Home from './Home';
 import Dashboard from './Dashboard'
+import Repository from './Repository'
 class AppContainer extends Component {
 
 	constructor(props) {
@@ -31,7 +32,8 @@ class AppContainer extends Component {
 			<div>
 				<Switch>
 					<Route exact path="/d" component={Home} /> 
-					<Route exact path="/" component={Dashboard} />
+					<Route exact path="/r" component={Dashboard} />
+					<Route exact path="/" component={Repository} />					
 				</Switch>
 			</div>
 		)

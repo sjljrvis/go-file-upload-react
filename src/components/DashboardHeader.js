@@ -49,9 +49,9 @@ class DashboardHeader extends Component {
                 {
                   showList ?
                     <div className="hamburger-list">
-                      <h4 style={{ textAlign: "center" }}>Profile</h4>
-                      <h4 style={{ textAlign: "center" }}>Settings</h4>
-                      <div style={{ textAlign: "center" }}>
+                      <h4 style={{ textAlign: "center", paddingLeft: 10, paddingRight: 10 }}>Profile</h4>
+                      <h4 style={{ textAlign: "center", paddingLeft: 10, paddingRight: 10 }}>Settings</h4>
+                      <div style={{ textAlign: "center", paddingLeft: 10, paddingRight: 10 }}>
                         <button style={{ textAlign: "center" }} className="navbar-mobile-button ">logout</button>
                       </div>
                     </div> : null
