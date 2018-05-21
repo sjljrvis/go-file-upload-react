@@ -14,6 +14,7 @@ import { Grid, Row, Col, Tabs, Tab } from 'react-bootstrap';
 import DashboardHeader from '../components/DashboardHeader'
 import Footer from '../components/Footer'
 import Deploy from './Deploy'
+import Settings from './Settings'
 class RepositoryContainer extends Component {
 
   constructor(props) {
@@ -111,13 +112,12 @@ class RepositoryContainer extends Component {
                 {active[2] ?
                   <div>
                     <h1>Metrics</h1>
-
                   </div> : null
                 }
 
                 {active[3] ?
                   <div>
-                    <h1>Settings</h1>
+                    <Settings/>
                   </div> : null
                 }
               </Row>

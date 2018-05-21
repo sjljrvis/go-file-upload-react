@@ -11,7 +11,7 @@ import * as uploadAction from '../store/action/uploadAction';
 import { height } from 'window-size';
 import { Grid, Row, Col } from 'react-bootstrap';
 
-class DeployContainer extends Component {
+class SettingsContainer extends Component {
 
   constructor(props) {
     super(props);
@@ -37,23 +37,11 @@ class DeployContainer extends Component {
         <Grid>
           <Row>
             <Col sm={12} md={4}>
-              <h4 style={{ color: "#ff5722", fontWeight: 400 }}> Deployment Method</h4>
+              <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Name</h4>
             </Col>
 
             <Col sm={12} md={8}>
-              <div style={{ display: "flex", flexDirection: " row" }}>
-                <div style={{ width: 125, margin: 5, padding: 5 }} className={active[0] ? "deploy-active" : null}
-                  onClick={() => { this.toggleClass(0) }}
-                >
-                  <h4><img src="../../assets/code-fork-symbol.svg" style={{ height: 25, width: 25, paddingRight: 5 }} />tocstack-Git</h4>
-                </div>
-
-                <div style={{ width: 125, margin: 5, padding: 5 }} className={active[1] ? "deploy-active" : null}
-                  onClick={() => { this.toggleClass(1) }}
-                >
-                  <h4><img src="../../assets/github.svg" style={{ height: 25, width: 25, paddingRight: 5 }} />Github</h4>
-                </div>
-              </div>
+              <h4 style={{ fontWeight: 100 }}>Appname</h4>
             </Col>
           </Row>
           <Row>
@@ -61,6 +49,73 @@ class DeployContainer extends Component {
           </Row>
         </Grid>
 
+        <Grid>
+          <Row>
+            <Col sm={12} md={4}>
+              <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Environment Variables</h4>
+            </Col>
+
+            <Col sm={12} md={8}>
+              <button className="border-button">Show</button>
+
+              <Row style={{ marginTop: 10 }}>
+                <Col sm={4} md={5}>
+                  <input className="input-box"></input>
+                </Col>
+                <Col sm={4} md={5}>
+                  <input className="input-box"></input>
+                </Col>
+                <Col sm={4} md={2}>
+                  <button className="border-button">Add</button>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Row>
+            <hr style={{ borderColor: "#d8d7d7", width: "95%" }} />
+          </Row>
+
+        </Grid>
+
+
+        <Grid>
+          <Row>
+            <Col sm={12} md={4}>
+              <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Info</h4>
+            </Col>
+
+            <Col sm={12} md={8}>
+              <Row>
+                <Col sm={4} md={4}>
+                  <h4 style={{ fontWeight: 100 }}>Language </h4>
+                </Col>
+                <Col sm={8} md={8}>
+                  <h4 style={{ fontWeight: 100 }}>nodeJS</h4>
+                </Col>
+              </Row>
+              <Row>
+                <Col sm={4} md={4}>
+                  <h4 style={{ fontWeight: 100 }}>Size </h4>
+                </Col>
+                <Col sm={8} md={8}>
+                  <h4 style={{ fontWeight: 100 }}>15 mb</h4>
+                </Col>
+              </Row>
+              <Row>
+                <Col sm={4} md={4}>
+                  <h4 style={{ fontWeight: 100 }}>tocstack Git Url </h4>
+                </Col>
+                <Col sm={8} md={8}>
+                  <pre> https://git.heroku.com/mailtrainapp.git</pre>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Row>
+            <hr style={{ borderColor: "#d8d7d7", width: "95%" }} />
+          </Row>
+
+        </Grid>
 
         <Grid>
           <Row>
@@ -85,7 +140,7 @@ class DeployContainer extends Component {
             </Col>
           </Row>
         </Grid>
-        
+
       </div >
 
     )
@@ -104,4 +159,4 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
   pure: false
-})(DeployContainer);
+})(SettingsContainer);

@@ -29,7 +29,6 @@ footer {
   border-color: #ff5722;
   width: 70px;
   font-size: 15px;
-  height: 30px;
   font-weight: 700;
   border-width: thin;
   height: 35px;
@@ -145,6 +144,15 @@ h1 {
   border: #fff;
 }
 
+.input-box{
+  height: 35px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #d8d7d7;
+  padding: 17px;
+  outline: none;
+
+}
 .hamburger-list{
   width:150px;
   height: max-content;
@@ -159,6 +167,21 @@ h1 {
   margin-right: 5px;
   padding-bottom: 5px;
   z-index:9999;
+}
+
+.border-button{
+  border-radius: 4px;
+  border-style: solid;
+  border-width: thin;
+  border-color: #ff5722;
+  color: #ff5722;
+  font-weight: 400;
+  background: white; 
+
+  width: 70px;
+  font-size: 15px;
+  font-weight: 700;
+  height: 35px;
 }
 
 .hero h1 {
