@@ -151,7 +151,11 @@ h1 {
   border-color: #d8d7d7;
   padding: 17px;
   outline: none;
-
+  margin-bottom : 2px;
+  font-weight: 500
+}
+.input-box::-webkit-input-placeholder{
+  font-weight: 100
 }
 .hamburger-list{
   width:150px;
@@ -177,11 +181,17 @@ h1 {
   color: #ff5722;
   font-weight: 400;
   background: white; 
-
+  margin: 2px;
   width: 70px;
   font-size: 15px;
   font-weight: 700;
   height: 35px;
+}
+
+.border-button:disabled{
+  border-color: #d8d7d7;
+  color: grey;
+  background: d8d7d7; 
 }
 
 .hero h1 {
