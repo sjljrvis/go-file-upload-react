@@ -15,6 +15,7 @@ import DashboardHeader from '../components/DashboardHeader'
 import Footer from '../components/Footer'
 import Deploy from './Deploy'
 import Settings from './Settings'
+import OverView from './OverView';
 class RepositoryContainer extends Component {
 
   constructor(props) {
@@ -46,7 +47,7 @@ class RepositoryContainer extends Component {
     return (
       <div>
         <DashboardHeader />
-        <div style={{  }}>
+        <div style={{}}>
           <Grid>
             <Row style={{}}>
               <Col xs={6} md={6}>
@@ -99,7 +100,7 @@ class RepositoryContainer extends Component {
               <Row>
                 {active[0] ?
                   <div>
-                    <h1>Overview</h1>
+                    <OverView />
                   </div> : null
                 }
 
@@ -117,7 +118,7 @@ class RepositoryContainer extends Component {
 
                 {active[3] ?
                   <div>
-                    <Settings/>
+                    <Settings />
                   </div> : null
                 }
               </Row>

@@ -16,20 +16,13 @@ class SettingsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: [true, false],
       inputBoxCount: 0,
       environmentVars: [{ key: "", value: "" }],
-      showEnvironmentVarsButton: { text: "Show", visible: false }
+      showEnvironmentVarsButton: { text: "Show", visible: false },
+      maintainanceMode: false
     }
     this.addInputBoxDom = this.addInputBoxDom.bind(this);
   }
-
-
-  toggleClass = (i) => {
-    let currentState = [false, false];
-    currentState[i] = !currentState[i]
-    this.setState({ active: currentState });
-  };
 
   addInputBox = () => {
     let { inputBoxCount, environmentVars } = this.state;
@@ -84,7 +77,7 @@ class SettingsContainer extends Component {
   }
 
   render() {
-    let { active, showEnvironmentVars, showEnvironmentVarsButton } = this.state;
+    let { showEnvironmentVars, showEnvironmentVarsButton } = this.state;
     return (
       <div>
 
@@ -104,7 +97,6 @@ class SettingsContainer extends Component {
         </Grid>
 
         <Grid>
-
           <Row>
             <Col sm={12} md={4}>
               <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Environment Variables</h4>
@@ -125,16 +117,13 @@ class SettingsContainer extends Component {
           <Row>
             <hr style={{ borderColor: "#d8d7d7", width: "95%" }} />
           </Row>
-
         </Grid>
-
 
         <Grid>
           <Row>
             <Col sm={12} md={4}>
               <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Info</h4>
             </Col>
-
             <Col sm={12} md={8}>
               <Row>
                 <Col sm={4} md={4}>
@@ -165,30 +154,40 @@ class SettingsContainer extends Component {
           <Row>
             <hr style={{ borderColor: "#d8d7d7", width: "95%" }} />
           </Row>
-
         </Grid>
 
         <Grid>
           <Row>
             <Col sm={12} md={4}>
-              <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Deploy using tocstack Git</h4>
+              <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Maintainance</h4>
             </Col>
-
             <Col sm={12} md={8}>
-              <h4 style={{ fontWeight: 100 }}>Install tocstack CLI</h4>
-              <pre>$ heroku login</pre>
-
-              <h4 style={{ fontWeight: 100 }}>Clone the repository</h4>
-              <p style={{ textAlign: "left", fontSize: 14 }}>Use Git to clone mailtrainapp's source code to your local machine.</p>
-              <pre>$ heroku git:clone -a mailtrainapp<br />
-                $ cd mailtrainapp</pre>
-
-              <h4 style={{ fontWeight: 100 }}>Deploy your changes</h4>
-              <p style={{ textAlign: "left", fontSize: 14 }}>Make some changes to the code you just cloned and deploy them to Heroku using Git.</p>
-              <pre>$ git add .<br />
-                $ git commit -am "make it better"<br />
-                $ git push heroku master</pre><br />
+              <Row>
+                <label className="switch">
+                  <input type="checkbox" checked={this.state.maintainanceMode} onChange={() => { this.setState({ maintainanceMode: !this.state.maintainanceMode }) }} />
+                  <span className="slider round"></span>
+                </label>
+              </Row>
             </Col>
+          </Row>
+          <Row>
+            <hr style={{ borderColor: "#d8d7d7", width: "95%" }} />
+          </Row>
+        </Grid>
+
+        <Grid>
+          <Row>
+            <Col sm={12} md={4}>
+              <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Delete App</h4>
+            </Col>
+            <Col sm={12} md={8}>
+              <Row>
+              <button className="normal-button normal-button-red" >Delete</button>
+              </Row>
+            </Col>
+          </Row>
+          <Row>
+            <hr style={{ borderColor: "#d8d7d7", width: "95%" }} />
           </Row>
         </Grid>
 
