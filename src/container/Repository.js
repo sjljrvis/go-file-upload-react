@@ -16,6 +16,7 @@ import Footer from '../components/Footer'
 import Deploy from './Deploy'
 import Settings from './Settings'
 import OverView from './OverView';
+import Notification from '../components/Notification'
 class RepositoryContainer extends Component {
 
   constructor(props) {
@@ -46,6 +47,7 @@ class RepositoryContainer extends Component {
     let { active } = this.state;
     return (
       <div>
+        <Notification />        
         <DashboardHeader />
         <div style={{}}>
           <Grid>

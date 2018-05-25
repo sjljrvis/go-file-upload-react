@@ -6,7 +6,7 @@
 # 
 
 run: 
-	webpack-dev-server --hot
+	npm run dev
 
 build:
 	webpack --config webpack.prod.js
