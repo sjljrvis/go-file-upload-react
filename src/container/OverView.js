@@ -26,8 +26,8 @@ class OverViewContainer extends Component {
 
   render() {
     return (
-      <Grid>
 
+      <Grid>
         <Col sm={12} md={4}>
 
           <div>

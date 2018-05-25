@@ -182,7 +182,7 @@ class SettingsContainer extends Component {
             </Col>
             <Col sm={12} md={8}>
               <Row>
-              <button className="normal-button normal-button-red" >Delete</button>
+                <button className="normal-button-red border-button" >Delete</button>
               </Row>
             </Col>
           </Row>

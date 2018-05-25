@@ -35,8 +35,8 @@ footer {
 }
 
 .normal-button-red{
-  background: #fc8d8d;
-  border-color: #fc8d8d;
+  color: #f94343 !important; 
+  border-color: #f94343 !important; 
 }
 
 .normal-button-green{
