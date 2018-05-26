@@ -53,12 +53,15 @@ footer {
   width: 150px;
   margin-top: 50px
 }
+button{
+  outline-color: white;
+}
 .avatar-button{
   height: 40px;
   width: 40px;
   border-style: solid;
   border-radius: 50%;
-  border:#d8d7d7;
+  border:#fff;
   background-color: #fff
 }
 .tocstack-button{
