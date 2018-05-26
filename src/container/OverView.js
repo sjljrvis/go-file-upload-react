@@ -23,7 +23,9 @@ class OverViewContainer extends Component {
 
   componentDidMount() {
   }
-
+  buildProject = () => {
+    this.props.showNotification("success", "Job added to queue", 4000)
+  }
   render() {
     return (
 
@@ -53,7 +55,7 @@ class OverViewContainer extends Component {
 
         <Col sm={12} md={8}>
           <h4 style={{ color: "#ff5722", fontWeight: 400, marginRight: 10 }}>App Logs</h4>
-          <button style={{ width: 100 }} className="border-button" onClick={() => { }}><Glyphicon glyph="refresh" /> Rebuild</button>
+          <button style={{ width: 100, margin: 10 }} className="border-button" onClick={() => { this.buildProject() }}><Glyphicon glyph="refresh" /> Rebuild</button>
 
           <div style={{ height: 500 }} className="log-body">
             <div className="log-line">

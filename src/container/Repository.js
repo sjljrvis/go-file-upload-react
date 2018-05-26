@@ -23,6 +23,7 @@ class RepositoryContainer extends Component {
     super(props);
     this.state = {
       active: [true, false, false, false],
+      notification: { show: false, type: "success", message: "Success" }
     };
   }
 
@@ -39,6 +40,12 @@ class RepositoryContainer extends Component {
     this.setState({ active: currentState });
   };
 
+  showNotification = (type, message, duration) => {
+    this.setState({ notification: { show: true, type: type, message: message } });
+    setTimeout(() => {
+      this.setState({ notification: { show: false, type: type, message: message } })
+    },duration)
+  }
 
   componentDidMount() {
   }
@@ -47,7 +54,6 @@ class RepositoryContainer extends Component {
     let { active } = this.state;
     return (
       <div>
-        <Notification />        
         <DashboardHeader />
         <div style={{}}>
           <Grid>
@@ -102,7 +108,7 @@ class RepositoryContainer extends Component {
               <Row>
                 {active[0] ?
                   <div>
-                    <OverView />
+                    <OverView  showNotification={this.showNotification}/>
                   </div> : null
                 }
 
@@ -130,6 +136,11 @@ class RepositoryContainer extends Component {
         <footer>
           <Footer />
         </footer>
+        {
+          this.state.notification.show ?
+            <Notification type={this.state.notification.type} message={this.state.notification.message} show={this.state.notification.show} />
+            : null
+        }
       </div>
 
     )
