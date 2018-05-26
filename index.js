@@ -12,8 +12,7 @@ import routes from './src/route/route';
 import reducer from './src/store/reducer';
 
 //import styles here
-import './src/style/css/app.css';
-import './src/style/css/simple-sidebar.css';
+
 
 
 //import js files

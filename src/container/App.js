@@ -18,6 +18,8 @@ import Repository from './Dashboard/Repository'
 
 import Login from './Auth/login'
 import Register from './Auth/Register'
+import Settings from './User/Settings'
+import Profile from './User/Profile'
 class AppContainer extends Component {
 
 	constructor(props) {
@@ -35,12 +37,14 @@ class AppContainer extends Component {
 			<div>
 				<Switch>
 
-					<Route exact path="/" component={Home} />
+					<Route exact path="/home" component={Home} />
 					<Route exact path="/d" component={Dashboard} />
 					<Route exact path="/r" component={Repository} />
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/register" component={Register} />
-
+					<Route exact path="/user/settings" component={Settings} />
+					<Route exact path="/" component={Profile} />
+					 
 				</Switch>
 			</div>
 		)
