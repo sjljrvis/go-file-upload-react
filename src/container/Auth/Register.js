@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
-import { makeRequest } from '../helper/internet'
-import { browserStore } from '../helper/collection'
-import * as appAction from '../store/action/appAction';
-import * as uploadAction from '../store/action/uploadAction';
+import { makeRequest } from '../../helper/internet'
+import { browserStore } from '../../helper/collection'
+import * as appAction from '../../store/action/appAction';
+import * as uploadAction from '../../store/action/uploadAction';
 import { height } from 'window-size';
 import { Grid, Row, Col, Glyphicon, Checkbox } from 'react-bootstrap';
 
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 
 class RegirsterContainer extends Component {
 

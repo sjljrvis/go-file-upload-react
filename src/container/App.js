@@ -12,11 +12,12 @@ import { height } from 'window-size';
 
 import { Jumbotron, Button, Glyphicon } from 'react-bootstrap';
 
-import Home from './Home';
-import Dashboard from './Dashboard'
-import Repository from './Repository'
-import Login from './login'
-import Register from './Register'
+import Home from './Home/index';
+import Dashboard from './Dashboard/index'
+import Repository from './Dashboard/Repository'
+
+import Login from './Auth/login'
+import Register from './Auth/Register'
 class AppContainer extends Component {
 
 	constructor(props) {
