@@ -10,6 +10,7 @@ import * as appAction from '../store/action/appAction';
 import * as uploadAction from '../store/action/uploadAction';
 import { height } from 'window-size';
 
+import { history } from '../route/history';
 import { Grid, Row, Col, Glyphicon, ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
 
 class Header extends Component {
@@ -43,7 +44,7 @@ class Header extends Component {
               <div style={{ display: "flex", flexDirection: " row", justifyContent: "space-evenly", height: 50, marginTop: 30 }}>
                 <h4>Blogs</h4>
                 <h4>Docs</h4>
-                <button className="headerbutton">login</button>
+                <button className="headerbutton" onClick={()=>{history.push("/login")}}>login</button>
               </div>
             </Col >
             <Col xs={6} md={4} className="nav-mobile">
@@ -54,7 +55,7 @@ class Header extends Component {
                       <h4 style={{ textAlign: "center" }}>Blogs</h4>
                       <h4 style={{ textAlign: "center" }}>Docs</h4>
                       <div style={{ textAlign: "center" }}>
-                        <button style={{ textAlign: "center" }} className="navbar-mobile-button ">login</button>
+                        <button style={{ textAlign: "center" }} className="navbar-mobile-button"  onClick={()=>{history.push("/login")}}>login</button>
                       </div>
                     </div> : null
                 }

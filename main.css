@@ -79,7 +79,13 @@ footer {
     border-radius: 4px;
     border-color: #d8d7d7;
 }
-
+.border-box{
+  padding : 20px;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 4px;
+  border-color: #d8d7d7;
+}
 .nav-bar-div:hover{
   border-style: solid;
   border-left: #ffffff;
@@ -130,6 +136,11 @@ h4 {
   font-weight: 300
 }
 
+h2 {
+  color: #666;
+  font-weight: 300
+}
+
 h6 {
   color: #666;
 }
@@ -141,6 +152,9 @@ h3 {
 
 h1 {
   line-height: 1.2em;
+  color: #666;
+}
+h5 {
   color: #666;
 }
 .hamburger-icon{

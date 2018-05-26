@@ -33,7 +33,6 @@ class RepositoryContainer extends Component {
     })
   }
 
-
   toggleClass = (i) => {
     let currentState = [false, false, false, false];
     currentState[i] = !currentState[i]
