@@ -21,13 +21,21 @@ import Register from './Auth/Register'
 import Settings from './User/Settings'
 import Profile from './User/Profile'
 import AddRepository from './Dashboard/AddRepository'
+import Notification from '../components/Notification'
 class AppContainer extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-
+			notification: { show: false, type: "success", message: "Success" }
 		}
+	}
+
+	showNotification = (type, message, duration) => {
+		this.setState({ notification: { show: true, type: type, message: message } });
+		setTimeout(() => {
+			this.setState({ notification: { show: false, type: type, message: message } })
+		}, duration)
 	}
 
 	componentDidMount() {
@@ -42,13 +50,18 @@ class AppContainer extends Component {
 					<Route exact path="/" component={Home} />
 					<Route exact path="/d" component={Dashboard} />
 					<Route exact path='/app/:appName' component={Repository} />
-					<Route exact path="/login" component={Login} />
+					<Route exact path="/login" showNotification={this.showNotification} data={12} component={Login} />
 					<Route exact path="/new/app" component={AddRepository} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/user/settings" component={Settings} />
 					<Route exact path="/user/:userName" component={Profile} />
 
 				</Switch>
+				{
+					this.state.notification.show ?
+						<Notification type={this.state.notification.type} message={this.state.notification.message} show={this.state.notification.show} />
+						: null
+				}
 			</div>
 		)
 	}
