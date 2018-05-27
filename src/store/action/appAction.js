@@ -1,15 +1,23 @@
-
+import { browserStore } from '../../helper/collection'
+import { makeRequest } from '../../helper/internet'
 //export all actions here
-export const toogleLogin = () => ({ type: "TOGGLE_LOGIN" });
-export const toogleSidebar = () => ({ type: "TOGGLE_SIDEBAR" });
-export const toogleTopbar = () => ({ type: "TOGGLE_TOPBAR" });
-export const setUserInfo = (userInfo) => ({ type: "USER_INFO", userInfo });
+export const loginRequest = () => ({ type: "LOGIN_REQUEST" });
+export const loginSuccess = (payload) => ({ type: "LOGIN_SUCCESS", ...payload });
+export const loginFail = (errMessage) => ({ type: "LOGIN_FAIL" ,errMessage});
 
-export const hasClickedSignUp = () =>({ type: "HAS_CLICKED_SIGNUP"})
-export const setProjects = (projects) => ({ type: "SET_PROJECTS", projects });
-export const setProject = (project) => ({ type: "SET_PROJECT", project });
-export const setModel = (model) => ({ type: "SET_MODEL", model });
-export const setQuery = (query) => ({ type: "SET_QUERY", query });
-export const setTrainingLogs = (logs) => ({type : "SET_TRAINING_LOGS" , logs})
+export const login = (email, password) => {
+  return async dispatch => {
+    try {
+      dispatch(loginRequest());
+      let { data } = await makeRequest('/login', "POST", null, { email, password });
+      dispatch(loginSuccess(data));
+      browserStore.set("userName", data.userName);
+      browserStore.set("email", data.email);
+      browserStore.set("token", data.token);
+    } catch (e) {
+      console.log(e)
+      dispatch(loginFail(e.message));
+    }
+  }
 
-
+}

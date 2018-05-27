@@ -20,28 +20,37 @@ class LoginContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      email: "",
+      password: ""
     }
   }
 
-  componentDidMount() {
+  handleLogin = () => {
+   let {email,password} = this.state
+    this.props.appAction.login(email,password)
   }
 
+  componentDidMount() {
+    console.log(this.props)
+  }
+
+  componentWillReceiveProps(){
+  }
   render() {
     return (
       <div>
         <Header />
-        <div  style={{marginBottom:20}}>
+        <div style={{ marginBottom: 20 }}>
           <Grid>
             <Grid>
               <Row>
                 <Col md={4} md={8}>
                   <Row>
-                    <Col xs={6}sm={6} md={12}>
+                    <Col xs={6} sm={6} md={12}>
                       <img src="../../assets/landing_new.png" style={{ width: "50%", height: "50%" }} />
                     </Col>
                     <Col xs={6} sm={6} md={12}>
-                      <p style={{ marginTop: 10 ,textAlign:"left"}}>Built for Developers,Join and contibute to our community</p>
+                      <p style={{ marginTop: 10, textAlign: "left" }}>Built for Developers,Join and contibute to our community</p>
                     </Col>
                   </Row>
                 </Col>
@@ -52,12 +61,16 @@ class LoginContainer extends Component {
                   <div className="border-box">
                     <div className="search-box" style={{ display: "flex", flexDirection: " row", justifyContent: "flex-end", height: 40, marginTop: 24, paddingLeft: 20 }}>
                       <Glyphicon glyph="user" style={{ paddingTop: 10, paddingRight: 7 }} />
-                      <input placeholder="UserName" style={{ width: "-webkit-fill-available", borderStyle: "unset", outline: "none" }}></input>
+                      <input placeholder="Email" style={{ width: "-webkit-fill-available", borderStyle: "unset", outline: "none" }}
+                        onChange={(e) => { this.setState({ email: e.target.value }) }}
+                      ></input>
                     </div>
 
                     <div className="search-box" style={{ display: "flex", flexDirection: " row", justifyContent: "flex-end", height: 40, marginTop: 24, paddingLeft: 20 }}>
                       <Glyphicon glyph="lock" style={{ paddingTop: 10, paddingRight: 7 }} />
-                      <input type="password" placeholder="Password" style={{ width: "-webkit-fill-available", borderStyle: "unset", outline: "none" }}></input>
+                      <input type="password" placeholder="Password" style={{ width: "-webkit-fill-available", borderStyle: "unset", outline: "none" }}
+                        onChange={(e) => { this.setState({ password: e.target.value }) }}
+                      ></input>
                     </div>
 
                     <div style={{ display: "flex", flexDirection: " row", justifyContent: "flex-start", height: 40, marginTop: 24, paddingLeft: 20 }}>
@@ -66,9 +79,9 @@ class LoginContainer extends Component {
                     </div>
 
                     <div style={{ display: "flex", flexDirection: " row", justifyContent: "flex-start", height: 40, marginTop: 24, paddingLeft: 20 }}>
-                      <button className="headerbutton">login</button>
+                      <button className="headerbutton" onClick={() => { this.handleLogin() }}>login</button>
                       <h4 style={{ marginTop: 5, marginLeft: 20, marginRight: 20 }}> or </h4>
-                      <button className="headerbutton" onClick={()=>{history.push("/register")}}>Sign up</button>
+                      <button className="headerbutton" onClick={() => { history.push("/register") }}>Sign up</button>
                     </div>
                   </div>
 
