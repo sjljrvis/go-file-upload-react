@@ -27,7 +27,8 @@ footer {
   color: white;
   border-style: solid;
   border-color: #ff5722;
-  width: 70px;
+  min-width: 70px;
+  width: auto;
   font-size: 15px;
   font-weight: 700;
   border-width: thin;
@@ -71,6 +72,21 @@ button{
   font-size: 30px
 }
 
+select{
+  width: -webkit-fill-available;
+  background-color: white;
+  height: 40px;
+  outline: none;
+  border: none;
+}
+option{
+  font-weight: 300;
+  font-size: 15px
+}
+
+option:after{
+  background-color: #ff5722 !important
+}
 
 .applist:hover{
   background: #f1f1f1
