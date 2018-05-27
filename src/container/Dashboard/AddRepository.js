@@ -41,15 +41,14 @@ class AddRepositoryContainer extends Component {
     return (
       <div>
         <DashboardHeader />
-        <div style={{}}>
+        <div style={{ marginBottom: 20 }}>
           <Grid>
             <Grid>
               <h3>Create a new App</h3>
               <h5 style={{ fontWeight: 400 }}>This git repository will contain all files and code</h5>
 
-
               <Col sm={12} md={8}>
-                <div className="border-box">
+                <div className="" style={{ marginTop: 25 }}>
                   <Row>
                     <Col sm={12} md={4}>
                       <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Name</h4>
@@ -83,15 +82,15 @@ class AddRepositoryContainer extends Component {
                       <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Description</h4>
                     </Col>
                     <Col sm={12} md={8}>
-                      <div className="search-box" style={{ height: 40 , padding:8}}>
-                      <input placeholder="My first project" style={{ width: "-webkit-fill-available", borderStyle: "unset", outline: "none"}}></input>
+                      <div className="search-box" style={{ height: 40, padding: 8 }}>
+                        <input placeholder="My first project" style={{ width: "-webkit-fill-available", borderStyle: "unset", outline: "none" }}></input>
                       </div>
                     </Col>
                   </Row>
 
                   <Row style={{ marginTop: 40 }}>
                     <Col sm={12} md={4}>
-                    <button className="normal-button">Create app</button>
+                      <button className="normal-button">Create app</button>
                     </Col>
                   </Row>
 

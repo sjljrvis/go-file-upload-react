@@ -11,12 +11,15 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
     crossorigin="anonymous">
   <title>tocstack</title>
-  <script>	document.onreadystatechange = function () {
+  <script>
+    document.onreadystatechange = function () {
+      document.getElementById('app').style.display = "none";
       var state = document.readyState
       if (state == 'complete') {
         setTimeout(function () {
           document.getElementById('interactive');
           document.getElementById('load').style.display = "none";
+          document.getElementById('app').style.display = "block";
         }, 1000);
       }
     }

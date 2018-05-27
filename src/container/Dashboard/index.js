@@ -9,8 +9,9 @@ import { browserStore } from '../../helper/collection'
 import * as appAction from '../../store/action/appAction';
 import * as uploadAction from '../../store/action/uploadAction';
 import { height } from 'window-size';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, Glyphicon } from 'react-bootstrap';
 
+import { history } from '../../route/history';
 import DashboardHeader from '../../components/DashboardHeader'
 import Footer from '../../components/Footer'
 
@@ -24,6 +25,7 @@ class DashboardContainer extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props)
   }
 
   render() {
@@ -40,105 +42,36 @@ class DashboardContainer extends Component {
               </Col>
               <Col xs={6} md={6}>
                 <div style={{ textAlign: "right" }}>
-                  <button className="normal-button">New App</button>
+                  <button className="normal-button" onClick={() => { history.push("/new/app") }}>New App</button>
                 </div>
               </Col>
             </Row>
 
-            <div style={{ marginTop: 100 }}>
-              <Grid>
-                <Row>
-                  <Col xs={6} md={6}>
-                    <div style={{ textAlign: "left" }}>
-                      <h4 style={{}}>App name</h4>
-                    </div>
-                  </Col>
-                  <Col xs={6} md={6}>
-                    <div style={{ textAlign: "right" }}>
-                      <h4 style={{}}>nodeJS</h4>
-                    </div>
-                  </Col>
-                </Row>
-                <Row>
-                  <hr style={{ borderColor: "#d8d7d7" }} />
-                </Row>
-              </Grid>
+            <div style={{ marginTop: 50,marginBottom:50 }}>
 
-              <Grid>
-                <Row>
-                  <Col xs={6} md={6}>
-                    <div style={{ textAlign: "left" }}>
-                      <h4 style={{}}>App name</h4>
-                    </div>
-                  </Col>
-                  <Col xs={6} md={6}>
-                    <div style={{ textAlign: "right" }}>
-                      <h4 style={{}}>nodeJS</h4>
-                    </div>
-                  </Col>
-                </Row>
-                <Row>
-                  <hr style={{ borderColor: "#d8d7d7" }} />
-                </Row>
-              </Grid>
-
-
-              <Grid>
-                <Row>
-                  <Col xs={6} md={6}>
-                    <div style={{ textAlign: "left" }}>
-                      <h4 style={{}}>App name</h4>
-                    </div>
-                  </Col>
-                  <Col xs={6} md={6}>
-                    <div style={{ textAlign: "right" }}>
-                      <h4 style={{}}>nodeJS</h4>
-                    </div>
-                  </Col>
-                </Row>
-                <Row>
-                  <hr style={{ borderColor: "#d8d7d7" }} />
-                </Row>
-              </Grid>
-
-
-              <Grid>
-                <Row>
-                  <Col xs={6} md={6}>
-                    <div style={{ textAlign: "left" }}>
-                      <h4 style={{}}>App name</h4>
-                    </div>
-                  </Col>
-                  <Col xs={6} md={6}>
-                    <div style={{ textAlign: "right" }}>
-                      <h4 style={{}}>nodeJS</h4>
-                    </div>
-                  </Col>
-                </Row>
-                <Row>
-                  <hr style={{ borderColor: "#d8d7d7" }} />
-                </Row>
-              </Grid>
-
-
-              <Grid>
-                <Row>
-                  <Col xs={6} md={6}>
-                    <div style={{ textAlign: "left" }}>
-                      <h4 style={{}}>App name</h4>
-                    </div>
-                  </Col>
-                  <Col xs={6} md={6}>
-                    <div style={{ textAlign: "right" }}>
-                      <h4 style={{}}>nodeJS</h4>
-                    </div>
-                  </Col>
-                </Row>
-                <Row>
-                  <hr style={{ borderColor: "#d8d7d7" }} />
-                </Row>
-              </Grid>
-
+              {[1,2,3,4,5].map((x, i) => {
+                return (
+                 
+                  <Grid style={{ marginTop: 0 , paddingTop:10 }} className="app-list" key={i} onClick={()=>{history.push(`/app/${x}`)}}>
+                    <Row>
+                      <Col xs={6} md={6}>
+                        <div style={{ textAlign: "left" }}>
+                          <h4 style={{}}>App name</h4>
+                        </div>
+                      </Col>
+                      <Col xs={6} md={6}>
+                        <div style={{ textAlign: "right" }}>
+                          <h4 style={{}}>nodeJS <Glyphicon glyph="chevron-right" /></h4>
+                        </div>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <hr style={{ borderColor: "#d8d7d7", marginBottom: 0 }} />
+                    </Row>
+                  </Grid>
+                )
+              })
+              }
             </div>
 
           </Grid>

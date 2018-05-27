@@ -1,6 +1,6 @@
 import { URL_BASE, URL_BASE_RASA } from './constant';
 import axios from 'axios';
-import {browserStore} from './collection'
+import { browserStore } from './collection'
 export const makeRequest = (endpoint, method = null, token = null, data = null) => {
 	const url = URL_BASE + endpoint;
 	const options = getOption(url, method, token, data);
@@ -8,33 +8,14 @@ export const makeRequest = (endpoint, method = null, token = null, data = null) 
 		try {
 			axios(options)
 				.then((res) => {
-					resolve({ error: null, res: res });
+					resolve(res);
 				})
 				.catch((err) => {
-					reject({ error: err, res: null });
+					reject(err);
 				});
 		}
 		catch (e) {
-			reject({ error: err, res: null });
-		}
-	});
-};
-
-export const makeRequestToRasa = (endpoint, method = null, token = null, data = null) => {
-	const url = URL_BASE_RASA + endpoint;
-	const options = getOption(url, method, token, data);
-	return new Promise((resolve, reject) => {
-		try {
-			axios(options)
-				.then((res) => {
-					resolve({ error: null, res: res });
-				})
-				.catch((err) => {
-					reject({ error: err, res: null });
-				});
-		}
-		catch (e) {
-			reject({ error: err, res: null });
+			reject(err);
 		}
 	});
 };

@@ -20,7 +20,6 @@ import './src/style/js/popper.min';
 
 const store = createStore(reducer, middleware);
 window.onload = () => {
-	window.location.hash = '#/'
 	render(
 		<Router history={createHashHistory()}>
 			<Provider store={store}>

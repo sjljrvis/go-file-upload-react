@@ -39,11 +39,11 @@ class AppContainer extends Component {
 			<div>
 				<Switch>
 
-					<Route exact path="/new/app" component={Home} />
+					<Route exact path="/" component={Home} />
 					<Route exact path="/d" component={Dashboard} />
-					<Route exact path="/r" component={Repository} />
+					<Route exact path='/app/:appName' component={Repository} />
 					<Route exact path="/login" component={Login} />
-					<Route exact path="/" component={AddRepository} />
+					<Route exact path="/new/app" component={AddRepository} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/user/settings" component={Settings} />
 					<Route exact path="/user/:userName" component={Profile} />

@@ -44,7 +44,10 @@ footer {
   background: #42f498;
   border-color: #42f498;
 }
-
+.app-list:hover{
+  color:#fff;
+  background-color: #f1f1f1
+}
 .heroButton {
   border-style: hidden;
   background: #ff5722;

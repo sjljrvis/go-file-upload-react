@@ -20,7 +20,6 @@ class OverViewContainer extends Component {
 
     };
   }
-
   componentDidMount() {
   }
   buildProject = () => {
