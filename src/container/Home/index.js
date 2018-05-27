@@ -10,7 +10,7 @@ import * as appAction from '../../store/action/appAction';
 import * as uploadAction from '../../store/action/uploadAction';
 import { height } from 'window-size';
 import { Grid, Row, Col } from 'react-bootstrap';
-
+import { history } from '../../route/history';
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import HomePageContent from '../../components/HomePageContent'

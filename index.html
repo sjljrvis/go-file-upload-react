@@ -11,9 +11,25 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
     crossorigin="anonymous">
   <title>tocstack</title>
+  <script>	document.onreadystatechange = function () {
+      var state = document.readyState
+      if (state == 'complete') {
+        setTimeout(function () {
+          document.getElementById('interactive');
+          document.getElementById('load').style.display = "none";
+        }, 1000);
+      }
+    }
+  </script>
 </head>
 
+
 <body style="height:100%">
+  <div id="load" style="background-color: #ffffff;padding:10% 0;height: 100vh;">
+    <div style="padding:5% 0;text-align: center">
+      <img style="width:15%;height:15%" src="./assets/loading.gif">
+    </div>
+  </div>
   <div id="app"></div>
   <script src="bundle.js"></script>
   <link rel="stylesheet" href="main.css" crossorigin="anonymous">

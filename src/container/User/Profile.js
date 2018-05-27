@@ -30,11 +30,11 @@ class UserProfileContainer extends Component {
   toggleClass = (i) => {
     let currentState = [false, false];
     currentState[i] = !currentState[i]
-    console.log(currentState)
     this.setState({ active: currentState });
   };
 
   componentDidMount() {
+
   }
 
   render() {

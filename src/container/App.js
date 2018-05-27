@@ -30,6 +30,7 @@ class AppContainer extends Component {
 	}
 
 	componentDidMount() {
+
 	}
 
 	render() {
@@ -37,14 +38,14 @@ class AppContainer extends Component {
 			<div>
 				<Switch>
 
-					<Route exact path="/home" component={Home} />
+					<Route exact path="/" component={Home} />
 					<Route exact path="/d" component={Dashboard} />
 					<Route exact path="/r" component={Repository} />
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/user/settings" component={Settings} />
-					<Route exact path="/" component={Profile} />
-					 
+					<Route exact path="/user/:userName" component={Profile} />
+
 				</Switch>
 			</div>
 		)
