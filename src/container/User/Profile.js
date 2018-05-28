@@ -72,7 +72,6 @@ class UserProfileContainer extends Component {
                       </div>
                     </div>
                     <hr style={{ borderColor: "#d8d7d7", width: "90%" }} />
-
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                       <div>
                         <a><h4><span>Epic</span></h4></a>

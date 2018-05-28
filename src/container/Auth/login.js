@@ -14,28 +14,39 @@ import { Grid, Row, Col, Glyphicon, Checkbox } from 'react-bootstrap';
 import { history } from '../../route/history';
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-
+import Notification from '../../components/Notification'
 class LoginContainer extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      notification: { show: false, type: "success", message: "Success" }
     }
   }
 
   handleLogin = () => {
-   let {email,password} = this.state
-    this.props.appAction.login(email,password)
+    let { email, password } = this.state
+    this.props.appAction.login(email, password)
+  }
+
+  showNotification = (type, message, duration) => {
+    this.setState({ notification: { show: true, type: type, message: message } });
+    setTimeout(() => {
+      this.setState({ notification: { show: false, type: "", message: "" } })
+    }, duration)
   }
 
   componentDidMount() {
-    console.log(this.props)
   }
 
-  componentWillReceiveProps(){
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.appReducer.errMessage !== "") {
+      this.showNotification('error',nextProps.appReducer.errMessage,3000)
+    }
   }
+
   render() {
     return (
       <div>
@@ -95,6 +106,11 @@ class LoginContainer extends Component {
         <footer>
           <Footer />
         </footer>
+        {
+          this.state.notification.show ?
+            <Notification type={this.state.notification.type} message={this.state.notification.message} show={this.state.notification.show} />
+            : null
+        }
       </div>
 
     )
