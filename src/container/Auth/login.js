@@ -34,7 +34,7 @@ class LoginContainer extends Component {
   showNotification = (type, message, duration) => {
     this.setState({ notification: { show: true, type: type, message: message } });
     setTimeout(() => {
-      this.setState({ notification: { show: false, type: "", message: "" } },()=>{this.props.appAction.resetError()})
+      this.setState({ notification: { show: false, type: "", message: "" } }, () => { this.props.appAction.resetLoginError() })
     }, duration)
   }
 
@@ -45,13 +45,14 @@ class LoginContainer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.appReducer.errMessage == nextProps.appReducer.errMessage && 
+    console.log((typeof browserStore.get("token")))
+    if (this.props.appReducer.errMessage == nextProps.appReducer.errMessage &&
       nextProps.appReducer.errMessage != "" &&
       !nextProps.appReducer.isLoggedIn) {
       this.showNotification("error", nextProps.appReducer.errMessage, 3000);
     }
-    else if (nextProps.appReducer.isLoggedIn || browserStore.get("token") != "") {
-      this.props.history.push('/d')
+    else if (nextProps.appReducer.isLoggedIn || (browserStore.get("token") != "" || typeof browserStore.get("token") != null)) {
+       this.props.history.push('/d')
     }
   }
 

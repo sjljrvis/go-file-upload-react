@@ -4,7 +4,7 @@ import { makeRequest } from '../../helper/internet'
 export const loginRequest = () => ({ type: "LOGIN_REQUEST" });
 export const loginSuccess = (payload) => ({ type: "LOGIN_SUCCESS", ...payload });
 export const loginFail = (errMessage) => ({ type: "LOGIN_FAIL", errMessage });
-export const resetError = () => ({
+export const resetLoginError = () => ({
   type: "LOGIN_ERR_RESET"
 })
 
@@ -23,4 +23,28 @@ export const login = (email, password) => {
     }
   }
 
+}
+
+
+
+export const repositoryRequest = () => ({ type: "REPOSITORY_REQUEST" });
+export const repositorySuccess = (payload) => ({ type: "REPOSITORY_SUCCESS", ...payload });
+export const repositoryFail = (errMessage) => ({ type: "REPOSITORY_FAIL", errMessage });
+export const resetRepositoryError = () => ({
+  type: "REPOSITORY_ERR_RESET"
+})
+export const setCurrentRepository = (currentRepository) => ({
+  type: "SET_CURRENT_REPOSITORY",
+  currentRepository:currentRepository
+})
+export const getRepositories = () => {
+  return async dispatch => {
+    try {
+      dispatch(repositoryRequest());
+      let { data } = await makeRequest('/repositories', "GET", null,null);
+      dispatch(repositorySuccess(data));
+    } catch (e) {
+      dispatch(repositoryFail(e.message));
+    }
+  }
 }

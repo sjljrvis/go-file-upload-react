@@ -38,8 +38,7 @@ const getOption = (url, method, token, data) => {
 			'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
 		}
 	};
-	options.headers['Authorization'] = browserStore.get("token");
-	options.headers['id'] = browserStore.get("id");
+	options.headers['Authorization'] = `Bearer ${browserStore.get("token")}`;
 	if (data) {
 		options['method'] = method || 'POST';
 		options['data'] = data;
