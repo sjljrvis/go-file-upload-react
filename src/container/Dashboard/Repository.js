@@ -43,14 +43,18 @@ class RepositoryContainer extends Component {
     this.setState({ notification: { show: true, type: type, message: message } });
     setTimeout(() => {
       this.setState({ notification: { show: false, type: type, message: message } })
-    },duration)
+    }, duration)
   }
 
   componentDidMount() {
+    let repositoryName = this.props.match.params.appName;
+    let currentRepository = this.props.appReducer.repositories.filter(x => x.repositoryName == repositoryName)[0];
+    currentRepository ? this.props.appAction.setCurrentRepository(currentRepository) : this.props.history.push('/d')
   }
 
   render() {
     let { active } = this.state;
+    let { currentRepository } = this.props.appReducer
     return (
       <div>
         <DashboardHeader />
@@ -59,7 +63,7 @@ class RepositoryContainer extends Component {
             <Row style={{}}>
               <Col xs={6} md={6}>
                 <div style={{ textAlign: "left" }}>
-                  <h3 style={{ marginTop: 5, fontWeight: 700 }}>AppName</h3>
+                  <h3 style={{ marginTop: 5, fontWeight: 700 }}>{currentRepository.repositoryName}</h3>
                 </div>
               </Col>
               <Col xs={6} md={6}>
@@ -73,7 +77,6 @@ class RepositoryContainer extends Component {
               <Grid>
                 <Row>
                   <div style={{ display: "flex", flexDirection: "row", }}>
-
                     <div className={this.state.active[0] ? 'nav-bar-div-active' : "nav-bar-div"}
                       onClick={() => { this.toggleClass(0) }}
                     >
@@ -107,7 +110,7 @@ class RepositoryContainer extends Component {
               <Row>
                 {active[0] ?
                   <div>
-                    <OverView  showNotification={this.showNotification}/>
+                    <OverView showNotification={this.showNotification} />
                   </div> : null
                 }
 

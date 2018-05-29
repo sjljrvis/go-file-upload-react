@@ -20,15 +20,23 @@ class DashboardContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      repositories: []
     }
   }
 
   componentDidMount() {
-    console.log(this.props)
+    if (this.props.appReducer.isLoggedIn || browserStore.get("token")) {
+      console.log("fetch repos")
+      this.props.appAction.getRepositories();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ repositories: nextProps.appReducer.repositories })
   }
 
   render() {
+    let { repositories } = this.state;
     return (
       <div>
         <DashboardHeader />
@@ -47,16 +55,15 @@ class DashboardContainer extends Component {
               </Col>
             </Row>
 
-            <div style={{ marginTop: 50,marginBottom:50 }}>
+            <div style={{ marginTop: 50, marginBottom: 50 }}>
 
-              {[1,2,3,4,5].map((x, i) => {
+              {repositories.map((x, i) => {
                 return (
-                 
-                  <Grid style={{ marginTop: 0 , paddingTop:10 }} className="app-list" key={i} onClick={()=>{history.push(`/app/${x}`)}}>
+                  <Grid style={{ marginTop: 0, paddingTop: 10 }} className="app-list" key={i} onClick={() => { history.push(`/app/${x.repositoryName}`) }}>
                     <Row>
                       <Col xs={6} md={6}>
                         <div style={{ textAlign: "left" }}>
-                          <h4 style={{}}>App name</h4>
+                          <h4 style={{}}>{x.repositoryName}</h4>
                         </div>
                       </Col>
                       <Col xs={6} md={6}>
