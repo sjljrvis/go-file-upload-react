@@ -3,7 +3,10 @@ import { makeRequest } from '../../helper/internet'
 //export all actions here
 export const loginRequest = () => ({ type: "LOGIN_REQUEST" });
 export const loginSuccess = (payload) => ({ type: "LOGIN_SUCCESS", ...payload });
-export const loginFail = (errMessage) => ({ type: "LOGIN_FAIL" ,errMessage});
+export const loginFail = (errMessage) => ({ type: "LOGIN_FAIL", errMessage });
+export const resetError = () => ({
+  type: "LOGIN_ERR_RESET"
+})
 
 export const login = (email, password) => {
   return async dispatch => {

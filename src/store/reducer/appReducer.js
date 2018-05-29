@@ -1,10 +1,11 @@
-
+import { history } from '../../route/history'
 const initialState = {
 	isFetching: false,
 	userName: "",
 	email: "",
 	token: "",
-	errMessage:""
+	errMessage: "",
+	isLoggedIn: false
 };
 
 const appReducer = (state = initialState, action) => {
@@ -19,13 +20,19 @@ const appReducer = (state = initialState, action) => {
 				isFetching: false,
 				userName: action.userName,
 				email: action.email,
-				token: action.token
+				token: action.token,
+				isLoggedIn: true
 			})
 
 		case "LOGIN_FAIL":
 			return Object.assign({}, state, {
 				isFetching: false,
-				errMessage : action.errMessage
+				errMessage: action.errMessage,
+				isLoggedIn: false
+			})
+		case "LOGIN_ERR_RESET":
+			return Object.assign({}, state, {
+				errMessage: ""
 			})
 
 		default:
