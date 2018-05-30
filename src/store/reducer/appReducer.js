@@ -11,7 +11,8 @@ const initialState = {
 	repositories: [],
 	currentRepository: {},
 	repositoryContainerInfo: {},
-	logs: []
+	logs: [],
+	socketMessages: []
 };
 
 const appReducer = (state = initialState, action) => {
@@ -79,7 +80,11 @@ const appReducer = (state = initialState, action) => {
 				errMessage: ""
 			})
 
-
+		//........................ socket logs ........................	
+		case "SET_SOCKET_MESSAGES":
+			return Object.assign({}, state, {
+				socketMessages: action.socketMessages
+			})
 
 		default:
 			return state
