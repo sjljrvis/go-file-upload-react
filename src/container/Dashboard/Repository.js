@@ -10,7 +10,7 @@ import * as appAction from '../../store/action/appAction';
 import * as uploadAction from '../../store/action/uploadAction';
 import { height } from 'window-size';
 import { Grid, Row, Col, Tabs, Tab } from 'react-bootstrap';
-
+import {APP_URL_BASE} from '../../helper/constant';
 import DashboardHeader from '../../components/DashboardHeader'
 import Notification from '../../components/Notification'
 import Footer from '../../components/Footer'
@@ -25,6 +25,7 @@ class RepositoryContainer extends Component {
       active: [true, false, false, false],
       notification: { show: false, type: "success", message: "Success" }
     };
+    respositoryContainerInfo :{}
   }
 
   addActiveClass() {
@@ -46,14 +47,28 @@ class RepositoryContainer extends Component {
     }, duration)
   }
 
+  handleAppUrl = () => {
+    let {currentRepository} = this.props.appReducer ;
+    let appWindow = window.open(`http://${currentRepository.repositoryName}.${APP_URL_BASE}`, '_blank');
+    appWindow.focus();
+  }
+
   componentDidMount() {
     let repositoryName = this.props.match.params.appName;
     let currentRepository = this.props.appReducer.repositories.filter(x => x.repositoryName == repositoryName)[0];
     currentRepository ? this.props.appAction.setCurrentRepository(currentRepository) : this.props.history.push('/d')
+    this.props.appAction.getRepositoriesInfo(currentRepository.repositoryName);
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.appReducer.respositoryContainerInfo){
+      let {respositoryContainerInfo} = nextProps.appReducer
+      this.setState({respositoryContainerInfo})
+    }
   }
 
   render() {
-    let { active } = this.state;
+    let { active ,respositoryContainerInfo} = this.state;
     let { currentRepository } = this.props.appReducer
     return (
       <div>
@@ -68,12 +83,12 @@ class RepositoryContainer extends Component {
               </Col>
               <Col xs={6} md={6}>
                 <div style={{ textAlign: "right" }}>
-                  <button className="normal-button normal-button-green">Open</button>
+                  <button className="normal-button normal-button-green" onClick={() => { this.handleAppUrl() }}>Open</button>
                 </div>
               </Col>
             </Row>
 
-            <div style={{ marginTop: 100, marginLeft: 20 }}>
+            <div style={{ marginTop: 50, marginLeft: 20 }}>
               <Grid>
                 <Row>
                   <div style={{ display: "flex", flexDirection: "row", }}>
@@ -110,7 +125,9 @@ class RepositoryContainer extends Component {
               <Row>
                 {active[0] ?
                   <div>
-                    <OverView showNotification={this.showNotification} />
+                    <OverView showNotification={this.showNotification} 
+                    respositoryContainerInfo={respositoryContainerInfo}
+                    />
                   </div> : null
                 }
 

@@ -17,17 +17,28 @@ class OverViewContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      repositoryContainerInfo: {
+      }
     };
   }
+
   componentDidMount() {
   }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ repositoryContainerInfo: this.props.appReducer.repositoryContainerInfo })
+  }
+
   buildProject = () => {
     this.props.showNotification("success", "Job added to queue", 4000)
   }
-  render() {
-    return (
 
+  render() {
+    let { repositoryContainerInfo } = this.state
+    let size = repositoryContainerInfo.HostConfig ? repositoryContainerInfo.HostConfig.ShmSize : 0;
+    let ipAddress = repositoryContainerInfo.NetworkSettings ? repositoryContainerInfo.NetworkSettings.IPAddress : 0;
+    let macAddress = repositoryContainerInfo.NetworkSettings ? repositoryContainerInfo.NetworkSettings.MacAddress : 0;
+    return (
       <Grid>
         <Col sm={12} md={4}>
 
@@ -38,9 +49,9 @@ class OverViewContainer extends Component {
 
           <div>
             <h4 style={{ color: "#ff5722", fontWeight: 400 }}>App info</h4>
-            <h4 style={{ fontWeight: 200 }}>Size : 64 mb</h4>
-            <h4 style={{ fontWeight: 200 }}>IP :  192.168.1.164</h4>
-            <h4 style={{ fontWeight: 200 }}>MAC : aa:32:sd:42:12:r31we</h4>
+            <h4 style={{ fontWeight: 200 }}>Size : {size} mb</h4>
+            <h4 style={{ fontWeight: 200 }}>IP :  {ipAddress}</h4>
+            <h4 style={{ fontWeight: 200 }}>MAC : {macAddress}</h4>
           </div>
 
           <div>

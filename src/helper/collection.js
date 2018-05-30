@@ -4,7 +4,7 @@ export const browserStore = {
 		localStorage[key] = value;
 	},
 	get: (key) => {
-		return localStorage[key] || null;
+		return localStorage[key] || "";
 	},
 	remove: (key) => {
 		localStorage.removeItem(key)

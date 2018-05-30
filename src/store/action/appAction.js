@@ -14,9 +14,9 @@ export const login = (email, password) => {
       dispatch(loginRequest());
       let { data } = await makeRequest('/login', "POST", null, { email, password });
       dispatch(loginSuccess(data));
-      browserStore.set("userName", data.userName);
-      browserStore.set("email", data.email);
-      browserStore.set("token", data.token);
+      await browserStore.set("userName", data.userName);
+      await browserStore.set("email", data.email);
+      await browserStore.set("token", data.token);
     } catch (e) {
       console.log(e)
       dispatch(loginFail(e.message));
@@ -35,14 +35,31 @@ export const resetRepositoryError = () => ({
 })
 export const setCurrentRepository = (currentRepository) => ({
   type: "SET_CURRENT_REPOSITORY",
-  currentRepository:currentRepository
+  currentRepository: currentRepository
 })
+export const getRepositoryContainerInfo = (repositoryContainerInfo) => ({
+  type: "REPOSITORY_CONTAINER_INFO",
+  repositoryContainerInfo: repositoryContainerInfo
+});
+
 export const getRepositories = () => {
   return async dispatch => {
     try {
       dispatch(repositoryRequest());
-      let { data } = await makeRequest('/repositories', "GET", null,null);
+      let { data } = await makeRequest('/repositories', "GET", null, null);
       dispatch(repositorySuccess(data));
+    } catch (e) {
+      dispatch(repositoryFail(e.message));
+    }
+  }
+}
+
+export const getRepositoriesInfo = repositoryName => {
+  return async dispatch => {
+    try {
+      dispatch(repositoryRequest());
+      let { data } = await makeRequest(`/monitorcontainer?containerName=${repositoryName}docker_web_1`, "GET", null, null);
+      dispatch(getRepositoryContainerInfo(data.info));
     } catch (e) {
       dispatch(repositoryFail(e.message));
     }
