@@ -26,8 +26,9 @@ class DashboardContainer extends Component {
 
   componentDidMount() {
     if (this.props.appReducer.isLoggedIn || browserStore.get("token")) {
-      console.log("fetch repos")
-      this.props.appAction.getRepositories();
+      setTimeout(()=>{
+        this.props.appAction.getRepositories();
+      },1000)
     }
   }
 

@@ -45,13 +45,12 @@ class LoginContainer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log((typeof browserStore.get("token")))
     if (this.props.appReducer.errMessage == nextProps.appReducer.errMessage &&
       nextProps.appReducer.errMessage != "" &&
       !nextProps.appReducer.isLoggedIn) {
       this.showNotification("error", nextProps.appReducer.errMessage, 3000);
     }
-    else if (nextProps.appReducer.isLoggedIn || (browserStore.get("token") != "" || typeof browserStore.get("token") != null)) {
+    else if (nextProps.appReducer.isLoggedIn || (browserStore.get("token") != "")) {
        this.props.history.push('/d')
     }
   }
