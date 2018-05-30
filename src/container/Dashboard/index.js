@@ -12,24 +12,33 @@ import { height } from 'window-size';
 import { Grid, Row, Col, Glyphicon } from 'react-bootstrap';
 
 import { history } from '../../route/history';
-import DashboardHeader from '../../components/DashboardHeader'
-import Footer from '../../components/Footer'
+import DashboardHeader from '../../components/DashboardHeader';
+import Footer from '../../components/Footer';
+
 
 class DashboardContainer extends Component {
 
   constructor(props) {
     super(props);
+    this.userSocket = new WebSocket('ws://localhost:5555/5ab226ff1578c84fbb9c32e9');
     this.state = {
       repositories: []
     }
   }
 
   componentDidMount() {
+    let socketMessages = [] ;
     if (this.props.appReducer.isLoggedIn || browserStore.get("token")) {
       setTimeout(()=>{
         this.props.appAction.getRepositories();
       },1000)
     }
+
+    this.userSocket.onmessage = (message) =>{
+      socketMessages.push(message.data);
+      this.props.appAction.setSocketMessages(socketMessages)
+    }
+
   }
 
   componentWillReceiveProps(nextProps) {

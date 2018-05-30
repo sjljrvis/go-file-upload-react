@@ -26,6 +26,12 @@ export const login = (email, password) => {
 }
 
 
+export const setSocketMessages = (socketMessages) =>({
+  type : "SET_SOCKET_MESSAGES",
+  socketMessages : socketMessages
+})
+
+
 
 export const repositoryRequest = () => ({ type: "REPOSITORY_REQUEST" });
 export const repositorySuccess = (payload) => ({ type: "REPOSITORY_SUCCESS", ...payload });
