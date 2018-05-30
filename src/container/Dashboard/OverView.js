@@ -18,7 +18,8 @@ class OverViewContainer extends Component {
     super(props);
     this.state = {
       repositoryContainerInfo: {
-      }
+      },
+      logs: []
     };
   }
 
@@ -26,15 +27,20 @@ class OverViewContainer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ repositoryContainerInfo: this.props.appReducer.repositoryContainerInfo })
+    this.setState({ repositoryContainerInfo: this.props.appReducer.repositoryContainerInfo, logs: nextProps.appReducer.logs })
   }
 
   buildProject = () => {
     this.props.showNotification("success", "Job added to queue", 4000)
   }
 
+  fetchContainerLogs = (repositoryName) => {
+    this.props.appAction.getRepositoryLogs("channelmanager")
+  }
+
   render() {
-    let { repositoryContainerInfo } = this.state
+    let { repositoryContainerInfo, logs } = this.state;
+    let { currentRepository } = this.props.appReducer;
     let size = repositoryContainerInfo.HostConfig ? repositoryContainerInfo.HostConfig.ShmSize : 0;
     let ipAddress = repositoryContainerInfo.NetworkSettings ? repositoryContainerInfo.NetworkSettings.IPAddress : 0;
     let macAddress = repositoryContainerInfo.NetworkSettings ? repositoryContainerInfo.NetworkSettings.MacAddress : 0;
@@ -44,7 +50,7 @@ class OverViewContainer extends Component {
 
           <div>
             <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Git</h4>
-            <pre> https://git.heroku.com/mailtrainapp.git</pre>
+            <pre> http://git.tocstack.com/{currentRepository.repositoryName}</pre>
           </div>
 
           <div>
@@ -64,65 +70,28 @@ class OverViewContainer extends Component {
         </Col>
 
         <Col sm={12} md={8}>
-          <h4 style={{ color: "#ff5722", fontWeight: 400, marginRight: 10 }}>App Logs</h4>
+          <h4 style={{ color: "#ff5722", fontWeight: 400, marginRight: 10 }}>Logs</h4>
+
           <button style={{ width: 100, margin: 10 }} className="border-button" onClick={() => { this.buildProject() }}><Glyphicon glyph="refresh" /> Rebuild</button>
+          <button style={{ width: 100, margin: 10 }} className="border-button" onClick={() => { this.fetchContainerLogs(currentRepository.repositoryName) }}><Glyphicon glyph="list-alt" /> Fetch Logs</button>
 
-          <div style={{ height: 500 }} className="log-body">
-            <div className="log-line">
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <div style={{ width: "5%", color: "#666" }}>
-                  <span style={{ marginRight: 10, color: "#666" }}>1</span>
-                </div>
-                <div style={{ width: "95%" }}>
-                  <span>v8.11.1</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="log-line">
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <div style={{ width: "5%", color: "#666" }}>
-                  <span style={{ marginRight: 10, color: "#666" }}>1</span>
-                </div>
-                <div style={{ width: "95%" }}>
-                  <span>Make some changes to the code you just cloned and deploy them to Heroku using Git.</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="log-line">
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <div style={{ width: "5%", color: "#666" }}>
-                  <span style={{ marginRight: 10, color: "#666" }}>1</span>
-                </div>
-                <div style={{ width: "95%" }}>
-                  <span>
-                    W: http://us-central1.gce.archive.ubuntu.com/ubuntu/dists/precise-updates/InRelease: Signature by key 630239CC130E1A7FD81A27B140976EAF437D05B5 uses weak digest algorithm (SHA1)</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="log-line">
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <div style={{ width: "5%", color: "#666" }}>
-                  <span style={{ marginRight: 10, color: "#666" }}>1</span>
-                </div>
-                <div style={{ width: "95%" }}>
-                  <span>Make some changes to the code you just cloned and deploy them to Heroku using Git</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="log-line">
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <div style={{ width: "5%", color: "#666" }}>
-                  <span style={{ marginRight: 10, color: "#666" }}>1</span>
-                </div>
-                <div style={{ width: "95%" }}>
-                  <span>v8.11.1</span>
-                </div>
-              </div>
-            </div>
+          <div style={{ height: 400, width: "auto" }} className="log-body">
+            {
+              logs.map((logLine, index) => {
+                return (
+                  <div className="log-line" key={index}>
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      <div style={{ width: "10%", color: "#666" }}>
+                        <span style={{ marginRight: 10, color: "#666" }}>{index}</span>
+                      </div>
+                      <div style={{ width: "90%" }}>
+                        <span>{logLine}</span>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })
+            }
 
           </div>
         </Col>

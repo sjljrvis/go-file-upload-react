@@ -10,7 +10,8 @@ const initialState = {
 
 	repositories: [],
 	currentRepository: {},
-	repositoryContainerInfo: {}
+	repositoryContainerInfo: {},
+	logs: []
 };
 
 const appReducer = (state = initialState, action) => {
@@ -62,6 +63,17 @@ const appReducer = (state = initialState, action) => {
 			return Object.assign({}, state, {
 				repositoryContainerInfo: action.repositoryContainerInfo[0],
 			})
+
+		case "REPOSITORY_CONTAINER_LOGS":
+			return Object.assign({}, state, {
+				logs: action.logs,
+			})
+
+		case "CLEAR_REPOSITORY_CONTAINER_LOGS":
+			return Object.assign({}, state, {
+				logs: []
+			})
+
 		case "REPOSITORY_ERR_RESET":
 			return Object.assign({}, state, {
 				errMessage: ""

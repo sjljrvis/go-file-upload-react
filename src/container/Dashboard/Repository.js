@@ -67,6 +67,10 @@ class RepositoryContainer extends Component {
     }
   }
 
+  componentWillUnmount(){
+    this.props.appAction.clearRepositoryLogs()
+  }
+
   render() {
     let { active ,respositoryContainerInfo} = this.state;
     let { currentRepository } = this.props.appReducer

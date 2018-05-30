@@ -30,6 +30,7 @@ export const login = (email, password) => {
 export const repositoryRequest = () => ({ type: "REPOSITORY_REQUEST" });
 export const repositorySuccess = (payload) => ({ type: "REPOSITORY_SUCCESS", ...payload });
 export const repositoryFail = (errMessage) => ({ type: "REPOSITORY_FAIL", errMessage });
+
 export const resetRepositoryError = () => ({
   type: "REPOSITORY_ERR_RESET"
 })
@@ -41,6 +42,13 @@ export const getRepositoryContainerInfo = (repositoryContainerInfo) => ({
   type: "REPOSITORY_CONTAINER_INFO",
   repositoryContainerInfo: repositoryContainerInfo
 });
+export const clearRepositoryLogs = () => ({type : "CLEAR_REPOSITORY_CONTAINER_LOGS"});
+
+export const getRepositoryContainerLogs = (logs) => ({
+  type: "REPOSITORY_CONTAINER_LOGS",
+  logs: logs
+});
+
 
 export const getRepositories = () => {
   return async dispatch => {
@@ -60,6 +68,18 @@ export const getRepositoriesInfo = repositoryName => {
       dispatch(repositoryRequest());
       let { data } = await makeRequest(`/monitorcontainer?containerName=${repositoryName}docker_web_1`, "GET", null, null);
       dispatch(getRepositoryContainerInfo(data.info));
+    } catch (e) {
+      dispatch(repositoryFail(e.message));
+    }
+  }
+}
+
+export const getRepositoryLogs = repositoryName => {
+  return async dispatch => {
+    try {
+      dispatch(repositoryRequest());
+      let { data } = await makeRequest(`/fetchlogs/${repositoryName}`, "GET", null, null);
+      dispatch(getRepositoryContainerLogs(data.logs));
     } catch (e) {
       dispatch(repositoryFail(e.message));
     }
