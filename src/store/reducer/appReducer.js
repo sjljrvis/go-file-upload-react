@@ -4,6 +4,7 @@ const initialState = {
 	userName: "",
 	email: "",
 	token: "",
+	userId:"",
 	errMessage: "",
 	isLoggedIn: false,
 
@@ -11,8 +12,7 @@ const initialState = {
 	repositories: [],
 	currentRepository: {},
 	repositoryContainerInfo: {},
-	logs: [],
-	socketMessages: []
+	logs: []
 };
 
 const appReducer = (state = initialState, action) => {
@@ -28,6 +28,7 @@ const appReducer = (state = initialState, action) => {
 				userName: action.userName,
 				email: action.email,
 				token: action.token,
+				userId : action.userId,
 				isLoggedIn: true
 			})
 		case "LOGIN_FAIL":
@@ -81,11 +82,6 @@ const appReducer = (state = initialState, action) => {
 			})
 
 		//........................ socket logs ........................	
-		case "SET_SOCKET_MESSAGES":
-			return Object.assign({}, state, {
-				socketMessages: action.socketMessages
-			})
-
 		default:
 			return state
 	}

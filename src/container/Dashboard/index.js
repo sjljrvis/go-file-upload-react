@@ -8,6 +8,7 @@ import { makeRequest } from '../../helper/internet'
 import { browserStore } from '../../helper/collection'
 import * as appAction from '../../store/action/appAction';
 import * as uploadAction from '../../store/action/uploadAction';
+import * as websocketAction from '../../store/action/websocketAction';
 import { height } from 'window-size';
 import { Grid, Row, Col, Glyphicon } from 'react-bootstrap';
 
@@ -20,25 +21,19 @@ class DashboardContainer extends Component {
 
   constructor(props) {
     super(props);
-    this.userSocket = new WebSocket('ws://localhost:5555/5ab226ff1578c84fbb9c32e9');
     this.state = {
       repositories: []
     }
   }
 
   componentDidMount() {
-    let socketMessages = [] ;
+    let socketMessages = [];
     if (this.props.appReducer.isLoggedIn || browserStore.get("token")) {
-      setTimeout(()=>{
+      setTimeout(() => {
         this.props.appAction.getRepositories();
-      },1000)
+        this.props.websocketAction.init();
+      }, 1000)
     }
-
-    this.userSocket.onmessage = (message) =>{
-      socketMessages.push(message.data);
-      this.props.appAction.setSocketMessages(socketMessages)
-    }
-
   }
 
   componentWillReceiveProps(nextProps) {
@@ -60,7 +55,10 @@ class DashboardContainer extends Component {
               </Col>
               <Col xs={6} md={6}>
                 <div style={{ textAlign: "right" }}>
-                  <button className="normal-button" onClick={() => { history.push("/new/app") }}>New App</button>
+                  <button className="normal-button" onClick={() => {
+                    this.props.websocketReducer.ws.send(JSON.stringify({ message: "disconnecting", type: "disconnect" }))
+                  }}
+                  >New App</button>
                 </div>
               </Col>
             </Row>
@@ -104,12 +102,14 @@ class DashboardContainer extends Component {
 
 const mapStateToProps = state => ({
   appReducer: state.appReducer,
-  uploadReducer: state.uploadReducer
+  uploadReducer: state.uploadReducer,
+  websocketReducer: state.websocketReducer
 });
 
 const mapDispatchToProps = dispatch => ({
   appAction: bindActionCreators(appAction, dispatch),
-  uploadAction: bindActionCreators(uploadAction, dispatch)
+  uploadAction: bindActionCreators(uploadAction, dispatch),
+  websocketAction: bindActionCreators(websocketAction, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {

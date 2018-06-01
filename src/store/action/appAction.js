@@ -1,6 +1,11 @@
 import { browserStore } from '../../helper/collection'
 import { makeRequest } from '../../helper/internet'
 //export all actions here
+
+/*
+* LOGIN actions
+*/
+
 export const loginRequest = () => ({ type: "LOGIN_REQUEST" });
 export const loginSuccess = (payload) => ({ type: "LOGIN_SUCCESS", ...payload });
 export const loginFail = (errMessage) => ({ type: "LOGIN_FAIL", errMessage });
@@ -14,9 +19,11 @@ export const login = (email, password) => {
       dispatch(loginRequest());
       let { data } = await makeRequest('/login', "POST", null, { email, password });
       dispatch(loginSuccess(data));
+
       await browserStore.set("userName", data.userName);
       await browserStore.set("email", data.email);
       await browserStore.set("token", data.token);
+      await browserStore.set("userId",data.userId)
     } catch (e) {
       console.log(e)
       dispatch(loginFail(e.message));
@@ -25,13 +32,9 @@ export const login = (email, password) => {
 
 }
 
-
-export const setSocketMessages = (socketMessages) =>({
-  type : "SET_SOCKET_MESSAGES",
-  socketMessages : socketMessages
-})
-
-
+/*
+* REPOSITORY actions
+*/
 
 export const repositoryRequest = () => ({ type: "REPOSITORY_REQUEST" });
 export const repositorySuccess = (payload) => ({ type: "REPOSITORY_SUCCESS", ...payload });
