@@ -40,6 +40,10 @@ class DashboardContainer extends Component {
     this.setState({ repositories: nextProps.appReducer.repositories })
   }
 
+  componentWillUnmount(){
+    this.props.websocketReducer.ws.send(JSON.stringify({ message: "disconnecting", type: "disconnect" }))
+  }
+
   render() {
     let { repositories } = this.state;
     return (
@@ -56,7 +60,7 @@ class DashboardContainer extends Component {
               <Col xs={6} md={6}>
                 <div style={{ textAlign: "right" }}>
                   <button className="normal-button" onClick={() => {
-                    this.props.websocketReducer.ws.send(JSON.stringify({ message: "disconnecting", type: "disconnect" }))
+                   history.push(`/new/app/`)
                   }}
                   >New App</button>
                 </div>
