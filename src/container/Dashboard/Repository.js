@@ -8,6 +8,7 @@ import { makeRequest } from '../../helper/internet'
 import { browserStore } from '../../helper/collection'
 import * as appAction from '../../store/action/appAction';
 import * as uploadAction from '../../store/action/uploadAction';
+import * as websocketAction from '../../store/action/websocketAction';
 import { height } from 'window-size';
 import { Grid, Row, Col, Tabs, Tab } from 'react-bootstrap';
 import {APP_URL_BASE} from '../../helper/constant';
@@ -17,6 +18,7 @@ import Footer from '../../components/Footer'
 import Deploy from './Deploy'
 import Settings from './Settings'
 import OverView from './OverView';
+import { webSocket } from 'rxjs/observable/dom/webSocket';
 class RepositoryContainer extends Component {
 
   constructor(props) {
@@ -172,12 +174,14 @@ class RepositoryContainer extends Component {
 
 const mapStateToProps = state => ({
   appReducer: state.appReducer,
-  uploadReducer: state.uploadReducer
+  uploadReducer: state.uploadReducer,
+  websocketReducer : state.webSocketReducer
 });
 
 const mapDispatchToProps = dispatch => ({
   appAction: bindActionCreators(appAction, dispatch),
-  uploadAction: bindActionCreators(uploadAction, dispatch)
+  uploadAction: bindActionCreators(uploadAction, dispatch),
+  websocketAction:bindActionCreators(websocketAction,dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
