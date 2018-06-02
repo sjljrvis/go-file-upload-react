@@ -1,6 +1,7 @@
 //from system
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {history} from '../route/history';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
@@ -33,7 +34,7 @@ class HomePageContent extends Component {
             <h4 style={{ fontWeight: "lighter", textAlign: "center", fontSize: "2em" }}> Don’t waste time writing server configuration. #PaaS </h4>
             <br />
             <div style={{ textAlign: "center" }}>
-              <button className="heroButton">Sign Up</button>
+              <button className="heroButton" onClick={()=>{history.push('/register')}}>Sign Up</button>
             </div>
             <Grid style={{ width: "60%", marginTop: 40 }}>
               <Row>
