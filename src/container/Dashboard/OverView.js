@@ -8,6 +8,7 @@ import { makeRequest } from '../../helper/internet'
 import { browserStore } from '../../helper/collection'
 import * as appAction from '../../store/action/appAction';
 import * as uploadAction from '../../store/action/uploadAction';
+import * as websocketAction from '../../store/action/websocketAction';
 import { height } from 'window-size';
 import { Grid, Row, Col, Tabs, Tab, Glyphicon } from 'react-bootstrap';
 import { black } from 'material-ui/styles/colors';
@@ -19,7 +20,9 @@ class OverViewContainer extends Component {
     this.state = {
       repositoryContainerInfo: {
       },
-      logs: []
+      logs: [],
+      buildLogs: true,
+      appLogs: false
     };
   }
 
@@ -27,19 +30,29 @@ class OverViewContainer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ repositoryContainerInfo: this.props.appReducer.repositoryContainerInfo, logs: nextProps.appReducer.logs })
+    let { buildLogs, appLogs } = this.state;
+    if (buildLogs) {
+      this.setState({ repositoryContainerInfo: this.props.appReducer.repositoryContainerInfo, logs: nextProps.websocketReducer.socketMessages })
+    }
+    if (appLogs) {
+      this.setState({ repositoryContainerInfo: this.props.appReducer.repositoryContainerInfo, logs: nextProps.appReducer.logs })
+    }
   }
 
   buildProject = () => {
+    let { repositoryName, path } = this.props.appReducer.currentRepository;
+    this.setState({ appLogs: false, buildLogs: true })
     this.props.showNotification("success", "Job added to queue", 4000)
+    this.props.appAction.manualDeploy(repositoryName, path)
   }
 
   fetchContainerLogs = (repositoryName) => {
-    this.props.appAction.getRepositoryLogs("channelmanager")
+    this.setState({ appLogs: true, buildLogs: false })
+    this.props.appAction.getRepositoryLogs(repositoryName)
   }
 
   render() {
-    let { repositoryContainerInfo, logs } = this.state;
+    let { repositoryContainerInfo, logs, buildLogs, appLogs } = this.state;
     let { currentRepository } = this.props.appReducer;
     let size = repositoryContainerInfo.HostConfig ? repositoryContainerInfo.HostConfig.ShmSize : 0;
     let ipAddress = repositoryContainerInfo.NetworkSettings ? repositoryContainerInfo.NetworkSettings.IPAddress : 0;
@@ -85,7 +98,15 @@ class OverViewContainer extends Component {
                         <span style={{ marginRight: 10, color: "#666" }}>{index}</span>
                       </div>
                       <div style={{ width: "90%" }}>
-                        <span>{logLine}</span>
+                        {
+                          // u001b[1A
+                          buildLogs ? <span>{logLine.message.replace(/[\u001b]\[[a-z A-Z 0-9].*[a-z A-Z 0-9]/gu, "..")}</span> :
+                            null
+                        }
+                        {
+                          appLogs ? <span>{logLine}</span> :
+                            null
+                        }
                       </div>
                     </div>
                   </div>
@@ -103,12 +124,14 @@ class OverViewContainer extends Component {
 
 const mapStateToProps = state => ({
   appReducer: state.appReducer,
-  uploadReducer: state.uploadReducer
+  uploadReducer: state.uploadReducer,
+  websocketReducer: state.websocketReducer
 });
 
 const mapDispatchToProps = dispatch => ({
   appAction: bindActionCreators(appAction, dispatch),
-  uploadAction: bindActionCreators(uploadAction, dispatch)
+  uploadAction: bindActionCreators(uploadAction, dispatch),
+  websocketAction: bindActionCreators(websocketAction, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {

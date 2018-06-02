@@ -41,7 +41,7 @@ class DashboardContainer extends Component {
   }
 
   componentWillUnmount(){
-    this.props.websocketReducer.ws.send(JSON.stringify({ message: "disconnecting", type: "disconnect" }))
+
   }
 
   render() {

@@ -1,5 +1,5 @@
 import { browserStore } from '../../helper/collection'
-
+import {SOCKET_URL_BASE} from '../../helper/constant'
 /*
 * SOCKET actions
 */
@@ -31,7 +31,7 @@ export const init = () => {
   return async (dispatch, getState) => {
     try {
       dispatch(wsConnecting())
-      let ws = await (new WebSocket(`ws://localhost:5555/${browserStore.get('userName')}/${browserStore.get('userId')}`));
+      let ws = await (new WebSocket(`${SOCKET_URL_BASE}/${browserStore.get('userName')}/${browserStore.get('userId')}`));
       ws.onopen = () => {
         dispatch(wsConnected(ws));
       }

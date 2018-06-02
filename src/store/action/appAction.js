@@ -23,7 +23,7 @@ export const login = (email, password) => {
       await browserStore.set("userName", data.userName);
       await browserStore.set("email", data.email);
       await browserStore.set("token", data.token);
-      await browserStore.set("userId",data.userId)
+      await browserStore.set("userId", data.userId)
     } catch (e) {
       console.log(e)
       dispatch(loginFail(e.message));
@@ -43,6 +43,8 @@ export const repositoryFail = (errMessage) => ({ type: "REPOSITORY_FAIL", errMes
 export const resetRepositoryError = () => ({
   type: "REPOSITORY_ERR_RESET"
 })
+
+
 export const setCurrentRepository = (currentRepository) => ({
   type: "SET_CURRENT_REPOSITORY",
   currentRepository: currentRepository
@@ -51,12 +53,24 @@ export const getRepositoryContainerInfo = (repositoryContainerInfo) => ({
   type: "REPOSITORY_CONTAINER_INFO",
   repositoryContainerInfo: repositoryContainerInfo
 });
-export const clearRepositoryLogs = () => ({type : "CLEAR_REPOSITORY_CONTAINER_LOGS"});
+export const clearRepositoryLogs = () => ({ type: "CLEAR_REPOSITORY_CONTAINER_LOGS" });
 
 export const getRepositoryContainerLogs = (logs) => ({
   type: "REPOSITORY_CONTAINER_LOGS",
   logs: logs
 });
+
+export const manualDeploy = (repositoryName, projectPath) => {
+  return async dispatch => {
+    try {
+      dispatch(repositoryRequest());
+      let { data } = await makeRequest('/rebuildcontainer', "POST", null, { repositoryName, projectPath });
+      console.log(data)
+    } catch (e) {
+      dispatch(repositoryFail(e.message));
+    }
+  }
+}
 
 
 export const getRepositories = () => {
@@ -87,7 +101,8 @@ export const getRepositoryLogs = repositoryName => {
   return async dispatch => {
     try {
       dispatch(repositoryRequest());
-      let { data } = await makeRequest(`/fetchlogs/${repositoryName}`, "GET", null, null);
+      let { data } = await makeRequest(`/fetchlogs/${repositoryName}docker_web_1`, "GET", null, null);
+      console.log(data)
       dispatch(getRepositoryContainerLogs(data.logs));
     } catch (e) {
       dispatch(repositoryFail(e.message));
