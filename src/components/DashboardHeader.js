@@ -49,6 +49,7 @@ class DashboardHeader extends Component {
                 {
                   showList ?
                     <div className="hamburger-list">
+                     <Glyphicon glyph="remove" style={{textAlign:"right",margin:2}} onClick={()=>{this. showDropdownlist()}}/>
                       <h4 style={{ textAlign: "center", paddingLeft: 10, paddingRight: 10 }}>Profile</h4>
                       <h4 style={{ textAlign: "center", paddingLeft: 10, paddingRight: 10 }}>Settings</h4>
                       <div style={{ textAlign: "center", paddingLeft: 10, paddingRight: 10 }}>

@@ -8,6 +8,7 @@ import { makeRequest } from '../../helper/internet'
 import { browserStore } from '../../helper/collection'
 import * as appAction from '../../store/action/appAction';
 import * as uploadAction from '../../store/action/uploadAction';
+import * as userAction from '../../store/action/userAction';
 import { height } from 'window-size';
 import { Grid, Row, Col, Glyphicon } from 'react-bootstrap';
 
@@ -22,28 +23,30 @@ class UserProfileContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: [true, false],
+      user: {},
+      repository: []
     }
   }
 
-
-  toggleClass = (i) => {
-    let currentState = [false, false];
-    currentState[i] = !currentState[i]
-    this.setState({ active: currentState });
-  };
-
   componentDidMount() {
+    let { userName } = this.props.match.params;
+    this.props.userAction.getUserInfo(userName)
+  }
 
+  componentWillReceiveProps(nextProps) {
+    let { userInfo } = nextProps.userReducer;
+    if (userInfo) {
+      let { user, repository } = userInfo;
+      this.setState({ user, repository })
+    }
   }
 
   render() {
-    let { active } = this.state;
+    let { user, repository } = this.state
     return (
       <div>
         <DashboardHeader />
-        <Grid>
-
+        <Grid style={{marginBottom:100}}>
           <div style={{ marginLeft: 0 }}>
             <Grid>
 
@@ -53,41 +56,35 @@ class UserProfileContainer extends Component {
                     <img src="../../../assets/sejal.png" style={{ height: "40%", width: "40%" }} />
                   </Col>
                   <Col xs={6} sm={6} md={12}>
-                    <h3 style={{ marginTop: 0, fontWeight: 500 }}>Sejal Chougule</h3>
-                    <h4>sjljarvis</h4>
+                    <h3 style={{ marginTop: 0, fontWeight: 500 }}>{user.fullName}</h3>
+                    <h4>{user.userName}</h4>
                   </Col>
-                  Fullstack Node.js,Vuejs,React developer @digitamizers , at @iosociety , Creator @tocstack.com
+                  <Col>
+                    <h4>{user.description}</h4>
+                  </Col>
                 </Row>
               </Col>
 
               <Col xs={12} sm={12} md={8}>
                 <Row>
                   <h3>Repositories</h3>
+
                   <div style={{ marginTop: 40 }}>
-
-                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                      <div>
-                        <a><h4><span>golangapi</span></h4></a>
-                        <h5>nodeJS</h5>
-                      </div>
-                    </div>
-                    <hr style={{ borderColor: "#d8d7d7", width: "90%" }} />
-                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                      <div>
-                        <a><h4><span>Epic</span></h4></a>
-                        <h5>nodeJS</h5>
-                      </div>
-                    </div>
-                    <hr style={{ borderColor: "#d8d7d7", width: "90%" }} />
-
-                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                      <div>
-                        <a><h4><span>test</span></h4></a>
-                        <h5>nodeJS</h5>
-                      </div>
-                    </div>
-                    <hr style={{ borderColor: "#d8d7d7", width: "90%" }} />
-
+                    {
+                      repository.map((item, index) => {
+                        return (
+                          <div key={index}>
+                            <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                              <div>
+                                <a><h4><span>{item.repositoryName}</span></h4></a>
+                                <h5>{item.language}</h5>
+                              </div>
+                            </div>
+                            <hr style={{ borderColor: "#d8d7d7", width: "90%" }} />
+                          </div>
+                        )
+                      })
+                    }
                   </div>
                 </Row>
               </Col>
@@ -109,12 +106,14 @@ class UserProfileContainer extends Component {
 
 const mapStateToProps = state => ({
   appReducer: state.appReducer,
-  uploadReducer: state.uploadReducer
+  uploadReducer: state.uploadReducer,
+  userReducer: state.userReducer
 });
 
 const mapDispatchToProps = dispatch => ({
   appAction: bindActionCreators(appAction, dispatch),
-  uploadAction: bindActionCreators(uploadAction, dispatch)
+  uploadAction: bindActionCreators(uploadAction, dispatch),
+  userAction: bindActionCreators(userAction, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
