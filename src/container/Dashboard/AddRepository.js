@@ -22,7 +22,12 @@ class AddRepositoryContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notification: { show: false, type: "success", message: "Success" }
+      notification: { show: false, type: "success", message: "Success" },
+
+      repositoryName: "",
+      language: "nodeJS",
+      description: ""
+
     };
   }
 
@@ -36,8 +41,14 @@ class AddRepositoryContainer extends Component {
   componentDidMount() {
   }
 
+  handleCreate = () => {
+    let { repositoryName, language, description } = this.state;
+    let payload = { repositoryName, language, description };
+    this.props.appAction.createRepository(payload);
+  }
+
   render() {
-    let { active } = this.state;
+    let { language } = this.state;
     return (
       <div>
         <DashboardHeader />
@@ -57,7 +68,9 @@ class AddRepositoryContainer extends Component {
                     <Col sm={12} md={8}>
                       <div className="search-box" style={{ display: "flex", flexDirection: " row", justifyContent: "flex-end", height: 40, paddingLeft: 20 }}>
                         <Glyphicon glyph="tasks" style={{ paddingTop: 10, paddingRight: 7 }} />
-                        <input placeholder="Myapp" style={{ width: "-webkit-fill-available", borderStyle: "unset", outline: "none" }}></input>
+                        <input placeholder="Myapp" style={{ width: "-webkit-fill-available", borderStyle: "unset", outline: "none" }}
+                          onChange={(e) => { this.setState({ repositoryName: e.target.value }) }}
+                        ></input>
                       </div>
                     </Col>
                   </Row>
@@ -68,8 +81,13 @@ class AddRepositoryContainer extends Component {
                     </Col>
                     <Col sm={12} md={8}>
                       <div className="search-box">
-                        <select>
-                          <option value="nodejs">nodeJS</option>
+                        <select onChange={(e) => {
+                          console.log(e.target.value)
+                          this.setState({ language: e.target.value })
+                        }}
+                          value={language}
+                        >
+                          <option value="nodeJS">nodeJS</option>
                           <option value="golang">go-lang</option>
                           <option value="ruby">ruby</option>
                         </select>
@@ -83,14 +101,16 @@ class AddRepositoryContainer extends Component {
                     </Col>
                     <Col sm={12} md={8}>
                       <div className="search-box" style={{ height: 40, padding: 8 }}>
-                        <input placeholder="My first project" style={{ width: "-webkit-fill-available", borderStyle: "unset", outline: "none" }}></input>
+                        <input placeholder="My first project" style={{ width: "-webkit-fill-available", borderStyle: "unset", outline: "none" }}
+                          onChange={(e) => { this.setState({ description: e.target.value }) }}
+                        ></input>
                       </div>
                     </Col>
                   </Row>
 
                   <Row style={{ marginTop: 40 }}>
                     <Col sm={12} md={4}>
-                      <button className="normal-button">Create app</button>
+                      <button className="normal-button" onClick={() => { this.handleCreate() }}>Create app</button>
                     </Col>
                   </Row>
 

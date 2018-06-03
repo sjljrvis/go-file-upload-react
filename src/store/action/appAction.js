@@ -49,10 +49,12 @@ export const setCurrentRepository = (currentRepository) => ({
   type: "SET_CURRENT_REPOSITORY",
   currentRepository: currentRepository
 })
+
 export const getRepositoryContainerInfo = (repositoryContainerInfo) => ({
   type: "REPOSITORY_CONTAINER_INFO",
   repositoryContainerInfo: repositoryContainerInfo
 });
+
 export const clearRepositoryLogs = () => ({ type: "CLEAR_REPOSITORY_CONTAINER_LOGS" });
 
 export const getRepositoryContainerLogs = (logs) => ({
@@ -71,6 +73,31 @@ export const manualDeploy = (repositoryName, projectPath) => {
     }
   }
 }
+
+
+export const createRepository = (payload) => {
+  return async dispatch => {
+    try {
+      dispatch(repositoryRequest());
+      let { data } = await makeRequest('/createrepository', "POST", null, payload);
+    } catch (e) {
+      dispatch(repositoryFail(e.message));
+    }
+  }
+}
+
+export const deleteRepository = (id , repositoryName) => {
+  return async dispatch => {
+    try {
+      dispatch(repositoryRequest());
+      let { data } = await makeRequest(`/deleterepository/${id}`, "POST", null, {repositoryName});
+      console.log(data)
+    } catch (e) {
+      dispatch(repositoryFail(e.message));
+    }
+  }
+}
+
 
 
 export const getRepositories = () => {

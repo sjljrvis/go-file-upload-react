@@ -51,6 +51,7 @@ class RepositoryContainer extends Component {
 
   handleAppUrl = () => {
     let {currentRepository} = this.props.appReducer ;
+    console.log(`http://${currentRepository.repositoryName}.${APP_URL_BASE}`)
     let appWindow = window.open(`http://${currentRepository.repositoryName}.${APP_URL_BASE}`, '_blank');
     appWindow.focus();
   }
