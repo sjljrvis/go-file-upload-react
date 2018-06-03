@@ -4,9 +4,11 @@ import { combineReducers } from 'redux';
 import appReducer from './appReducer';
 import uploadReducer from './uploadReducer';
 import websocketReducer from './websocketReducer';
+import userReducer from './userReducer'
 
 export default combineReducers({
 	appReducer,
 	uploadReducer,
-	websocketReducer
+	websocketReducer,
+	userReducer
 });
