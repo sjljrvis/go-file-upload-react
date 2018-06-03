@@ -13,6 +13,7 @@ const initialState = {
 	currentRepository: {},
 	repositoryContainerInfo: {},
 	logs: []
+	
 };
 
 const appReducer = (state = initialState, action) => {

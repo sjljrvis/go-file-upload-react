@@ -73,8 +73,15 @@ class SettingsContainer extends Component {
     this.setState({ showEnvironmentVarsButton })
   }
 
+  handleDelete = () =>{
+    let {_id ,repositoryName} = this.props.appReducer.currentRepository
+    this.props.appAction.deleteRepository(_id,repositoryName)
+  }
+
   componentDidMount() {
   }
+
+
 
   render() {
     let { showEnvironmentVars, showEnvironmentVarsButton } = this.state;
@@ -182,7 +189,7 @@ class SettingsContainer extends Component {
             </Col>
             <Col sm={12} md={8}>
               <Row>
-                <button className="normal-button-red border-button" >Delete</button>
+                <button className="normal-button-red border-button" onClick={() =>{this.handleDelete()}} >Delete</button>
               </Row>
             </Col>
           </Row>
