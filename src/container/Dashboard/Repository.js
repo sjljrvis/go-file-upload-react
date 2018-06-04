@@ -90,7 +90,7 @@ class RepositoryContainer extends Component {
               </Col>
               <Col xs={6} md={6}>
                 <div style={{ textAlign: "right" }}>
-                  <button className="normal-button normal-button-green" onClick={() => { this.handleAppUrl() }}>Open</button>
+                  <button className="border-button-green border-button" onClick={() => { this.handleAppUrl() }}>Open</button>
                 </div>
               </Col>
             </Row>

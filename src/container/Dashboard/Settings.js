@@ -57,7 +57,7 @@ class SettingsContainer extends Component {
             <input placeholder="Value" className="input-box" value={environmentVars[i].value ? environmentVars[i].value : ""} onChange={(e) => { this.addEnvironmentVars(e, i, "value") }}></input>
           </Col>
           <Col sm={4} md={4}>
-            <button className="border-button" onClick={() => { console.log(this.state) }}><Glyphicon glyph="save" /></button>
+            <button className="border-button" onClick={() => { console.log(this.state) }}><Glyphicon glyph="save" /> Save</button>
             <button className="border-button" onClick={() => { this.removeInputBox(i) }}><Glyphicon glyph="remove" /></button>
           </Col>
         </Row>
