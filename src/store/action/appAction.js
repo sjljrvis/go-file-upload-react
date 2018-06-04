@@ -1,5 +1,6 @@
 import { browserStore } from '../../helper/collection'
 import { makeRequest } from '../../helper/internet'
+import { history } from '../../route/history'
 //export all actions here
 
 /*
@@ -13,6 +14,12 @@ export const resetLoginError = () => ({
   type: "LOGIN_ERR_RESET"
 })
 
+export const logout = () => {
+  localStorage.clear();
+  history.push("/");
+  location.reload()
+}
+
 export const login = (email, password) => {
   return async dispatch => {
     try {
@@ -23,7 +30,9 @@ export const login = (email, password) => {
       await browserStore.set("userName", data.userName);
       await browserStore.set("email", data.email);
       await browserStore.set("token", data.token);
-      await browserStore.set("userId", data.userId)
+      await browserStore.set("userId", data.userId);
+      await browserStore.set("temp","GuvfVfOvyyvbaQbyyneOnol");
+      
     } catch (e) {
       console.log(e)
       dispatch(loginFail(e.message));
@@ -86,11 +95,11 @@ export const createRepository = (payload) => {
   }
 }
 
-export const deleteRepository = (id , repositoryName) => {
+export const deleteRepository = (id, repositoryName) => {
   return async dispatch => {
     try {
       dispatch(repositoryRequest());
-      let { data } = await makeRequest(`/deleterepository/${id}`, "POST", null, {repositoryName});
+      let { data } = await makeRequest(`/deleterepository/${id}`, "POST", null, { repositoryName });
       console.log(data)
     } catch (e) {
       dispatch(repositoryFail(e.message));

@@ -35,6 +35,12 @@ footer {
   height: 35px;
 }
 
+.border-button-green{
+  color: #42f498 !important; 
+  border-color:  #42f498 !important; 
+  outline: #42f498 !important;
+}
+
 .normal-button-red{
   color: #f94343 !important; 
   border-color: #f94343 !important; 
@@ -227,16 +233,18 @@ h5 {
   font-weight: 400;
   background: white; 
   margin: 2px;
-  width: 70px;
+  min-width: 70px;
   font-size: 15px;
   font-weight: 700;
   height: 35px;
+  outline: #ff5722;
 }
 
 .border-button:disabled{
   border-color: #d8d7d7;
   color: grey;
-  background: d8d7d7; 
+  background: #d8d7d7; 
+  outline: grey;
 }
 
 .hero h1 {

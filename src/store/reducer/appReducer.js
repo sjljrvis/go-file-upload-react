@@ -4,7 +4,7 @@ const initialState = {
 	userName: "",
 	email: "",
 	token: "",
-	userId:"",
+	userId: "",
 	errMessage: "",
 	isLoggedIn: false,
 
@@ -13,7 +13,7 @@ const initialState = {
 	currentRepository: {},
 	repositoryContainerInfo: {},
 	logs: []
-	
+
 };
 
 const appReducer = (state = initialState, action) => {
@@ -29,7 +29,7 @@ const appReducer = (state = initialState, action) => {
 				userName: action.userName,
 				email: action.email,
 				token: action.token,
-				userId : action.userId,
+				userId: action.userId,
 				isLoggedIn: true
 			})
 		case "LOGIN_FAIL":
@@ -42,7 +42,15 @@ const appReducer = (state = initialState, action) => {
 			return Object.assign({}, state, {
 				errMessage: ""
 			})
-
+		case "LOGOUT":
+			return Object.assign({}, state, {
+				userName: "",
+				email: "",
+				token: "",
+				userId: "",
+				errMessage: "",
+				isLoggedIn: false,
+			})
 		//........................ Repositories...................//
 		case "REPOSITORY_REQUEST":
 			return Object.assign({}, state, {
