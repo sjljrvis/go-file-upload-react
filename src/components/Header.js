@@ -36,13 +36,15 @@ class Header extends Component {
           <Row className="show-grid">
             <Col xs={6} md={8} >
               <div style={{ display: "flex", flexDirection: " row", justifyContent: "flex-start", height: 50 }}>
-                <img src="../../assets/rocket.svg"  style={{width:"40px",height:"40px",marginTop:20,marginRight:5}}/>
-                <h1>tocstack</h1>
+                <img src="../../assets/rocket.svg"  style={{width:"40px",height:"40px",marginTop:20,marginRight:5}}
+                 onClick={()=>{history.push("/")}}
+                />
+                <h1 onClick={()=>{history.push("/")}}>tocstack</h1>
               </div>
             </Col>
             <Col xs={6} md={4} className="nav-list">
               <div style={{ display: "flex", flexDirection: " row", justifyContent: "space-evenly", height: 50, marginTop: 30 }}>
-                <h4>Blogs</h4>
+                <h4 onClick={()=>{history.push("/blog/sejal")}}>Blogs</h4>
                 <h4>Docs</h4>
                 <button className="headerbutton" onClick={()=>{history.push("/login")}}>login</button>
               </div>

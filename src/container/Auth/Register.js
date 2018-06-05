@@ -11,6 +11,7 @@ import * as uploadAction from '../../store/action/uploadAction';
 import { height } from 'window-size';
 import { Grid, Row, Col, Glyphicon, Checkbox } from 'react-bootstrap';
 
+import { history } from '../../route/history';
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 
@@ -30,17 +31,17 @@ class RegirsterContainer extends Component {
     return (
       <div>
         <Header />
-        <div style={{marginBottom:20}}>
-          <Grid>
+        <div style={{ marginBottom: 20 }}>
+          <Grid className="login">
             <Grid>
               <Row>
-                <Col md={4} md={8}>
+              <Col md={4} md={8}>
                   <Row>
-                    <Col xs={6} sm={6} md={12}>
-                      <img src="../../assets/landing_new.png" style={{ width: "50%", height: "50%" }} />
+                    <Col xs={12} sm={12} md={12}  style={{textAlign:"center"}}>
+                      <img src="../../assets/landing_new.png"/>
                     </Col>
-                    <Col xs={6} sm={6} md={12}>
-                      <p style={{ marginTop: 10, textAlign: "left" }}>Built for Developers,Join and contibute to our community</p>
+                    <Col xs={12} sm={12} md={12}>
+                      <p style={{ marginTop: 10, textAlign: "center" }}>Built for Developers,Join and contibute to our community</p>
                     </Col>
                   </Row>
                 </Col>
@@ -71,7 +72,7 @@ class RegirsterContainer extends Component {
                     <div style={{ display: "flex", flexDirection: " row", justifyContent: "flex-start", height: 40, marginTop: 24, paddingLeft: 20 }}>
                       <button className="headerbutton">Submit</button>
                       <h4 style={{ marginTop: 5, marginLeft: 20, marginRight: 20 }}> or </h4>
-                      <button className="headerbutton">Login</button>
+                      <button className="headerbutton" onClick={()=>{history.push('/login')}}>Login</button>
                     </div>
                   </div>
 
