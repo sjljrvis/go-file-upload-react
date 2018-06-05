@@ -60,15 +60,15 @@ class LoginContainer extends Component {
       <div>
         <Header />
         <div style={{ marginBottom: 20 }}>
-          <Grid>
+          <Grid className="login">
             <Grid>
               <Row>
                 <Col md={4} md={8}>
                   <Row>
-                    <Col xs={6} sm={6} md={12}>
-                      <img src="../../assets/landing_new.png" style={{ width: "50%", height: "50%" }} />
+                    <Col xs={12} sm={12} md={12}>
+                      <img src="../../assets/landing_new.png"/>
                     </Col>
-                    <Col xs={6} sm={6} md={12}>
+                    <Col xs={12} sm={12} md={12}>
                       <p style={{ marginTop: 10, textAlign: "left" }}>Built for Developers,Join and contibute to our community</p>
                     </Col>
                   </Row>
