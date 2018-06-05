@@ -65,11 +65,11 @@ class LoginContainer extends Component {
               <Row>
                 <Col md={4} md={8}>
                   <Row>
-                    <Col xs={12} sm={12} md={12}>
+                    <Col xs={12} sm={12} md={12}  style={{textAlign:"center"}}>
                       <img src="../../assets/landing_new.png"/>
                     </Col>
                     <Col xs={12} sm={12} md={12}>
-                      <p style={{ marginTop: 10, textAlign: "left" }}>Built for Developers,Join and contibute to our community</p>
+                      <p style={{ marginTop: 10, textAlign: "center" }}>Built for Developers,Join and contibute to our community</p>
                     </Col>
                   </Row>
                 </Col>
