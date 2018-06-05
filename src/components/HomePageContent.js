@@ -1,7 +1,7 @@
 //from system
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {history} from '../route/history';
+import { history } from '../route/history';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
@@ -26,7 +26,7 @@ class HomePageContent extends Component {
   render() {
     return (
 
-      <div style={{ marginLeft: 10, marginRight: 10 }}>
+      <div style={{ marginLeft: 0, marginRight: 0 }}>
         <div>
           <Grid style={{ marginTop: 50 }}>
             <h1 style={{ color: "#ff5722", fontWeight: "lighter", textAlign: "center", fontSize: "3em" }}>One shot app deployment</h1>
@@ -34,7 +34,7 @@ class HomePageContent extends Component {
             <h4 style={{ fontWeight: "lighter", textAlign: "center", fontSize: "2em" }}> Don’t waste time writing server configuration. #PaaS </h4>
             <br />
             <div style={{ textAlign: "center" }}>
-              <button className="heroButton" onClick={()=>{history.push('/register')}}>Sign Up</button>
+              <button className="heroButton" onClick={() => { history.push('/register') }}>Sign Up</button>
             </div>
             <Grid style={{ width: "60%", marginTop: 40 }}>
               <Row>
@@ -100,7 +100,7 @@ class HomePageContent extends Component {
               <p style={{ textAlign: "left" }}>Login to tocstack and click new app ,choose your preferred programming language and click create</p>
             </Row>
             <Row style={{ textAlign: "center" }}>
-              <img src="../../assets/demo1.png" style={{ height: "80%", width: "80%" }} className="image-box" />
+              <img src="../../assets/demo1.png" className="image-box" />
             </Row>
           </Grid>
         </div>
@@ -114,7 +114,7 @@ class HomePageContent extends Component {
               <p style={{ textAlign: "left" }}>This is the best part ☺ ,given example is simple a helloworld app written in nodeJS</p>
             </Row>
             <Row style={{ textAlign: "center" }}>
-              <img src="../../assets/demo2.png" style={{ height: "80%", width: "80%" }} className="image-box" />
+              <img src="../../assets/demo2.png" className="image-box" />
             </Row>
           </Grid>
         </div>
@@ -135,7 +135,7 @@ class HomePageContent extends Component {
               </ul>
             </Row>
             <Row style={{ textAlign: "center" }}>
-              <img src="../../assets/demo3.png" style={{ height: "80%", width: "80%" }} className="image-box" />
+              <img src="../../assets/demo3.png" className="image-box" />
             </Row>
           </Grid>
         </div>
@@ -165,7 +165,7 @@ class HomePageContent extends Component {
               <p style={{ textAlign: "left" }}>We are commited to <span>Open source</span></p>
             </Row>
             <Row style={{ textAlign: "center" }}>
-              <img src="../../assets/opensource.png" style={{ height: 150, width: 150 }}/>
+              <img src="../../assets/opensource.png" style={{ height: 150, width: 150 }} />
             </Row>
           </Grid>
         </div>

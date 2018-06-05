@@ -16,6 +16,7 @@ import Home from './Home/index';
 import Dashboard from './Dashboard/index'
 import Repository from './Dashboard/Repository'
 
+import Blog from './Blogs'
 import Login from './Auth/login'
 import Register from './Auth/Register'
 import Settings from './User/Settings'
@@ -55,6 +56,8 @@ class AppContainer extends Component {
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/user/settings" component={Settings} />
 					<Route exact path="/user/:userName" component={Profile} />
+					<Route exact path="/blog/:permaLink" component={Blog} />
+					
 
 				</Switch>
 				{
