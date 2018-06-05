@@ -20,6 +20,20 @@ export const logout = () => {
   location.reload()
 }
 
+export const register = (payload) => {
+  return async dispatch => {
+    try {
+      console.log(payload);
+      dispatch(loginRequest());
+      let { data } = await makeRequest('/admin/user', "PUT", null, payload);
+      console.log(data);
+    } catch (e) {
+      console.log(e)
+      dispatch(loginFail(e.message));
+    }
+  }
+}
+
 export const login = (email, password) => {
   return async dispatch => {
     try {
@@ -31,8 +45,8 @@ export const login = (email, password) => {
       await browserStore.set("email", data.email);
       await browserStore.set("token", data.token);
       await browserStore.set("userId", data.userId);
-      await browserStore.set("temp","GuvfVfOvyyvbaQbyyneOnol");
-      
+      await browserStore.set("temp", "GuvfVfOvyyvbaQbyyneOnol");
+
     } catch (e) {
       console.log(e)
       dispatch(loginFail(e.message));
