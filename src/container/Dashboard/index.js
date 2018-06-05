@@ -35,8 +35,18 @@ class DashboardContainer extends Component {
       setTimeout(() => {
         this.props.appAction.getRepositories();
         this.props.websocketAction.init();
-      }, 1000)
+      }, 500)
     }
+  }
+
+  nullRepositoyMsg = () => {
+    return (
+    <div style={{textAlign:"center"}}>
+      <img src="../../../assets/search.svg" style={{ width: 150, height: 150 }} />
+      <h1 style={{fontWeight : "lighter"}}>Oops !!!</h1>
+      <h4>Looks like you haven't created app yet, Click new app to get started</h4>
+    </div>
+    )
   }
 
   componentWillReceiveProps(nextProps) {
@@ -51,7 +61,7 @@ class DashboardContainer extends Component {
     let { repositories, loading, isLoggedIn } = this.state;
     return (
       <div>
-          <DashboardHeader /> 
+        <DashboardHeader />
         <div style={{ height: "100vh" }}>
           <Grid>
             <Row style={{}}>
@@ -72,29 +82,32 @@ class DashboardContainer extends Component {
 
             {!loading ?
               <div style={{ marginTop: 50, marginBottom: 50 }}>
-
-                {repositories.map((x, i) => {
-                  return (
-                    <Grid style={{ marginTop: 0, paddingTop: 10 }} className="app-list" key={i} onClick={() => { history.push(`/app/${x.repositoryName}`) }}>
-                      <Row>
-                        <Col xs={6} md={6}>
-                          <div style={{ textAlign: "left" }}>
-                            <h4 style={{}}>{x.repositoryName}</h4>
-                          </div>
-                        </Col>
-                        <Col xs={6} md={6}>
-                          <div style={{ textAlign: "right" }}>
-                            <h4 style={{}}>nodeJS <Glyphicon glyph="chevron-right" /></h4>
-                          </div>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <hr style={{ borderColor: "#d8d7d7", marginBottom: 0 }} />
-                      </Row>
-                    </Grid>
-                  )
-                })
+                {
+                  repositories.length == 0 ?
+                    this.nullRepositoyMsg() :
+                    repositories.map((x, i) => {
+                      return (
+                        <Grid style={{ marginTop: 0, paddingTop: 10 }} className="app-list" key={i} onClick={() => { history.push(`/app/${x.repositoryName}`) }}>
+                          <Row>
+                            <Col xs={6} md={6}>
+                              <div style={{ textAlign: "left" }}>
+                                <h4 style={{}}>{x.repositoryName}</h4>
+                              </div>
+                            </Col>
+                            <Col xs={6} md={6}>
+                              <div style={{ textAlign: "right" }}>
+                                <h4 style={{}}>nodeJS <Glyphicon glyph="chevron-right" /></h4>
+                              </div>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <hr style={{ borderColor: "#d8d7d7", marginBottom: 0 }} />
+                          </Row>
+                        </Grid>
+                      )
+                    })
                 }
+
               </div> :
               <div style={{ height: "100vh", textAlign: "center", padding: "10% 0" }}>
                 <div style={{ padding: "5% 0", textAlign: "center" }}>
