@@ -19,6 +19,7 @@ import Repository from './Dashboard/Repository'
 import Blog from './Blogs'
 import Login from './Auth/login'
 import Register from './Auth/Register'
+import Oauth from './Auth/Oauth'
 import Settings from './User/Settings'
 import Profile from './User/Profile'
 import AddRepository from './Dashboard/AddRepository'
@@ -57,6 +58,8 @@ class AppContainer extends Component {
 					<Route exact path="/user/settings" component={Settings} />
 					<Route exact path="/user/:userName" component={Profile} />
 					<Route exact path="/blog/:permaLink" component={Blog} />
+					<Route exact path="/oauth" component={Oauth} />
+					
 					
 
 				</Switch>

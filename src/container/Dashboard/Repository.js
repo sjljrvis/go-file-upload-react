@@ -11,7 +11,7 @@ import * as uploadAction from '../../store/action/uploadAction';
 import * as websocketAction from '../../store/action/websocketAction';
 import { height } from 'window-size';
 import { Grid, Row, Col, Tabs, Tab } from 'react-bootstrap';
-import {APP_URL_BASE} from '../../helper/constant';
+import { APP_URL_BASE } from '../../helper/constant';
 import DashboardHeader from '../../components/DashboardHeader'
 import Notification from '../../components/Notification'
 import Footer from '../../components/Footer'
@@ -27,7 +27,7 @@ class RepositoryContainer extends Component {
       active: [true, false, false, false],
       notification: { show: false, type: "success", message: "Success" }
     };
-    respositoryContainerInfo :{}
+    respositoryContainerInfo: { }
   }
 
   addActiveClass() {
@@ -50,7 +50,7 @@ class RepositoryContainer extends Component {
   }
 
   handleAppUrl = () => {
-    let {currentRepository} = this.props.appReducer ;
+    let { currentRepository } = this.props.appReducer;
     console.log(`http://${currentRepository.repositoryName}.${APP_URL_BASE}`)
     let appWindow = window.open(`http://${currentRepository.repositoryName}.${APP_URL_BASE}`, '_blank');
     appWindow.focus();
@@ -59,23 +59,27 @@ class RepositoryContainer extends Component {
   componentDidMount() {
     let repositoryName = this.props.match.params.appName;
     let currentRepository = this.props.appReducer.repositories.filter(x => x.repositoryName == repositoryName)[0];
-    currentRepository ? this.props.appAction.setCurrentRepository(currentRepository) : this.props.history.push('/d')
-    this.props.appAction.getRepositoriesInfo(currentRepository.repositoryName);
+    if (currentRepository) {
+      this.props.appAction.setCurrentRepository(currentRepository)
+    } else {
+      this.props.appAction.getRepository(repositoryName);
+    }
+    this.props.appAction.getRepositoriesInfo(repositoryName);
   }
-
-  componentWillReceiveProps(nextProps){
-    if(nextProps.appReducer.respositoryContainerInfo){
-      let {respositoryContainerInfo} = nextProps.appReducer
-      this.setState({respositoryContainerInfo})
+  
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.appReducer.respositoryContainerInfo) {
+      let { respositoryContainerInfo } = nextProps.appReducer
+      this.setState({ respositoryContainerInfo })
     }
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.props.appAction.clearRepositoryLogs()
   }
 
   render() {
-    let { active ,respositoryContainerInfo} = this.state;
+    let { active, respositoryContainerInfo } = this.state;
     let { currentRepository } = this.props.appReducer
     return (
       <div>
@@ -132,8 +136,8 @@ class RepositoryContainer extends Component {
               <Row>
                 {active[0] ?
                   <div>
-                    <OverView showNotification={this.showNotification} 
-                    respositoryContainerInfo={respositoryContainerInfo}
+                    <OverView showNotification={this.showNotification}
+                      respositoryContainerInfo={respositoryContainerInfo}
                     />
                   </div> : null
                 }
@@ -176,13 +180,13 @@ class RepositoryContainer extends Component {
 const mapStateToProps = state => ({
   appReducer: state.appReducer,
   uploadReducer: state.uploadReducer,
-  websocketReducer : state.webSocketReducer
+  websocketReducer: state.webSocketReducer
 });
 
 const mapDispatchToProps = dispatch => ({
   appAction: bindActionCreators(appAction, dispatch),
   uploadAction: bindActionCreators(uploadAction, dispatch),
-  websocketAction:bindActionCreators(websocketAction,dispatch)
+  websocketAction: bindActionCreators(websocketAction, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {

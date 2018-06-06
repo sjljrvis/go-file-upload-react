@@ -121,7 +121,18 @@ export const deleteRepository = (id, repositoryName) => {
   }
 }
 
-
+export const getRepository = (repositoryName) => {
+  return async dispatch => {
+    try {
+      dispatch(repositoryRequest());
+      let { data } = await makeRequest(`/repository/${repositoryName}`, "GET", null, null);
+      console.log(data)
+      dispatch(setCurrentRepository(data.repository));
+    } catch (e) {
+      dispatch(repositoryFail(e.message));
+    }
+  }
+}
 
 export const getRepositories = () => {
   return async dispatch => {

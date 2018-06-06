@@ -10,6 +10,7 @@ import * as appAction from '../../store/action/appAction';
 import * as uploadAction from '../../store/action/uploadAction';
 import { height } from 'window-size';
 import { Grid, Row, Col } from 'react-bootstrap';
+import GitHubLogin from 'react-github-login';
 
 class DeployContainer extends Component {
 
@@ -26,14 +27,31 @@ class DeployContainer extends Component {
     this.setState({ active: currentState });
   };
 
+
+
+  onSuccess = async (response) => {
+    try {
+      let data = await makeRequest('/github/oauth', "POST", null, { code: response.code, state: "" })
+      console.log(data)
+
+    } catch (e) {
+      console.log(e)
+    }
+  };
+
+  onFailure = response => {
+
+  };
+
   componentDidMount() {
   }
 
   render() {
     let { active } = this.state;
+    let CLIENT_ID = "Iv1.16b554c48fa726fb";
+    let REDIRECT_URI = "http://localhost:8082/oauth"
     return (
       <div>
-
         <Grid>
           <Row>
             <Col sm={12} md={4}>
@@ -60,32 +78,51 @@ class DeployContainer extends Component {
             <hr style={{ borderColor: "#d8d7d7", width: "95%" }} />
           </Row>
         </Grid>
-
-
         <Grid>
-          <Row>
-            <Col sm={12} md={4}>
-              <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Deploy using tocstack Git</h4>
-            </Col>
+          {
+            active[0] ?
+              <Row>
+                <Col sm={12} md={4}>
+                  <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Deploy using tocstack Git</h4>
+                </Col>
 
-            <Col sm={12} md={8}>
-              <h4 style={{ fontWeight: 100 }}>Install tocstack CLI</h4>
-              <pre>$ heroku login</pre>
+                <Col sm={12} md={8}>
+                  <h4 style={{ fontWeight: 100 }}>Install tocstack CLI</h4>
+                  <pre>$ heroku login</pre>
 
-              <h4 style={{ fontWeight: 100 }}>Clone the repository</h4>
-              <p style={{ textAlign: "left", fontSize: 14 }}>Use Git to clone mailtrainapp's source code to your local machine.</p>
-              <pre>$ heroku git:clone -a mailtrainapp<br />
-                $ cd mailtrainapp</pre>
+                  <h4 style={{ fontWeight: 100 }}>Clone the repository</h4>
+                  <p style={{ textAlign: "left", fontSize: 14 }}>Use Git to clone mailtrainapp's source code to your local machine.</p>
+                  <pre>$ heroku git:clone -a mailtrainapp<br />
+                    $ cd mailtrainapp</pre>
 
-              <h4 style={{ fontWeight: 100 }}>Deploy your changes</h4>
-              <p style={{ textAlign: "left", fontSize: 14 }}>Make some changes to the code you just cloned and deploy them to Heroku using Git.</p>
-              <pre>$ git add .<br />
-                $ git commit -am "make it better"<br />
-                $ git push heroku master</pre><br />
-            </Col>
-          </Row>
+                  <h4 style={{ fontWeight: 100 }}>Deploy your changes</h4>
+                  <p style={{ textAlign: "left", fontSize: 14 }}>Make some changes to the code you just cloned and deploy them to Heroku using Git.</p>
+                  <pre>$ git add .<br />
+                    $ git commit -am "make it better"<br />
+                    $ git push heroku master</pre><br />
+                </Col>
+              </Row>
+              :
+              active[1] ?
+                <Row>
+                  <Col sm={12} md={4}>
+                    <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Connect to Github</h4>
+                  </Col>
+
+                  <Col sm={12} md={8}>
+                    <GitHubLogin
+                      className="border-button"
+                      clientId={CLIENT_ID}
+                      redirectUri={REDIRECT_URI}
+                      onSuccess={this.onSuccess}
+                      onFailure={this.onFailure} />,
+                  </Col>
+                </Row> :
+                null
+          }
+
         </Grid>
-        
+
       </div >
 
     )
