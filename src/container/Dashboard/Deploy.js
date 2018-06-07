@@ -11,7 +11,10 @@ import * as uploadAction from '../../store/action/uploadAction';
 import { height } from 'window-size';
 import { Grid, Row, Col } from 'react-bootstrap';
 import GitHubLogin from 'react-github-login';
-
+import {
+  GITHUB_CLIENT_ID,
+  GITHUB_REDIRECT_URI
+} from '../../helper/constant'
 class DeployContainer extends Component {
 
   constructor(props) {
@@ -77,8 +80,8 @@ class DeployContainer extends Component {
   render() {
     let { active, showRepoList, showConnectButton, githubRepos, githubUser, branch } = this.state;
     let { currentRepository } = this.props.appReducer;
-    let CLIENT_ID = "Iv1.16b554c48fa726fb";
-    let REDIRECT_URI = "http://localhost:8082/oauth"
+    let CLIENT_ID = GITHUB_CLIENT_ID;
+    let REDIRECT_URI = GITHUB_REDIRECT_URI
     return (
       <div>
         <Grid>
