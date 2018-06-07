@@ -19,10 +19,12 @@ import Repository from './Dashboard/Repository'
 import Blog from './Blogs'
 import Login from './Auth/login'
 import Register from './Auth/Register'
+import Oauth from './Auth/Oauth'
 import Settings from './User/Settings'
 import Profile from './User/Profile'
 import AddRepository from './Dashboard/AddRepository'
 import Notification from '../components/Notification'
+import Error404Container from './404'
 class AppContainer extends Component {
 
 	constructor(props) {
@@ -57,6 +59,9 @@ class AppContainer extends Component {
 					<Route exact path="/user/settings" component={Settings} />
 					<Route exact path="/user/:userName" component={Profile} />
 					<Route exact path="/blog/:permaLink" component={Blog} />
+					<Route exact path="/oauth" component={Oauth} />
+					<Route  component={Error404Container} />
+					
 					
 
 				</Switch>

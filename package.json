@@ -27,6 +27,7 @@
     "react-contenteditable": "^2.0.5",
     "react-dom": "^15.6.2",
     "react-dropzone": "^4.2.0",
+    "react-github-login": "^1.0.3",
     "react-modal": "^3.1.10",
     "react-paginate": "^5.0.0",
     "react-progressbar": "^15.4.1",
