@@ -26,7 +26,8 @@ class DeployContainer extends Component {
       githubConnected: false,
       githubRepos: [],
       githubUser: {},
-      branch: "master"
+      branch: "master",
+      showLoadingGif: false
     }
   }
 
@@ -54,9 +55,10 @@ class DeployContainer extends Component {
 
 
   onSuccess = async (response) => {
+    this.setState({ showLoadingGif: true })
     try {
       let { data: { data: { user, repositories } } } = await makeRequest('/github/oauth', "POST", null, { code: response.code, state: "" });
-      this.setState({ githubRepos: repositories, githubUser: user, showRepoList: true, showConnectButton: false })
+      this.setState({ githubRepos: repositories, githubUser: user, showRepoList: true, showConnectButton: false, showLoadingGif: false })
     } catch (e) {
       console.log(e)
     }
@@ -66,19 +68,20 @@ class DeployContainer extends Component {
   };
 
   async componentDidMount() {
+    let { currentRepository } = this.props.appReducer;
     try {
       let { data: { data: { user } } } = await (makeRequest('/github/user', "GET", null, null));
       let { data: { data: { repositories } } } = await (makeRequest(`/github/repos?userName=${user.login}`, "GET", null, null));
-      console.log(repositories)
       this.setState({ githubRepos: repositories, githubUser: user, showRepoList: true })
     } catch (e) {
       console.log(e)
       this.setState({ showConnectButton: true, showRepoList: false })
+      this.unlinkAppFromGithub(currentRepository.repositoryName)
     }
   }
 
   render() {
-    let { active, showRepoList, showConnectButton, githubRepos, githubUser, branch } = this.state;
+    let { active, showRepoList, showConnectButton, githubRepos, githubUser, branch, showLoadingGif } = this.state;
     let { currentRepository } = this.props.appReducer;
     let CLIENT_ID = GITHUB_CLIENT_ID;
     let REDIRECT_URI = GITHUB_REDIRECT_URI
@@ -144,16 +147,20 @@ class DeployContainer extends Component {
 
                   <Col sm={12} md={8} style={{ marginTop: 10, marginBottom: 10 }} >
                     {showConnectButton ?
-                      <GitHubLogin
-                        className="border-button"
-                        clientId={CLIENT_ID}
-                        redirectUri={REDIRECT_URI}
-                        onSuccess={this.onSuccess}
-                        onFailure={this.onFailure} /> : null
-                    }
+                      <div style={{ display: "flex", flexDirection: "row" }}>
+                        <GitHubLogin
+                          className="border-button"
+                          clientId={CLIENT_ID}
+                          redirectUri={REDIRECT_URI}
+                          onSuccess={this.onSuccess}
+                          onFailure={this.onFailure} />
+                        {
+                          showLoadingGif ? < img src="../../../assets/loading.gif" style={{ width: "5%", height: "5%", marginTop: 5 }} /> : null
+                        }
+                      </div>
+                      :
 
-                    {
-                      !(showRepoList && currentRepository.github.connected) ?
+                      (showRepoList && !currentRepository.github.connected && !showConnectButton) ?
                         <div className="border-box" style={{ height: 400, overflow: "auto" }}>
                           <div>
                             <div style={{ display: "flex", flexDirection: "row" }}>
@@ -209,28 +216,40 @@ class DeployContainer extends Component {
 
 
                   {/* /*********Select Branch********* */}
-                  <Col sm={12} md={4} style={{ marginTop: 10, marginBottom: 10 }}>
-                    <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Select Branch</h4>
-                  </Col>
+                  {
+                    (showRepoList || currentRepository.github.connected) ?
+                      <div>
+                        <Col sm={12} md={4} style={{ marginTop: 10, marginBottom: 10 }}>
+                          <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Select Branch</h4>
+                        </Col>
 
-                  <Col sm={12} md={8} style={{ marginTop: 10, marginBottom: 10 }}>
-                    <div className="border-box" style={{ width: "50%", padding: 5, display: "flex", flexDirection: "row", }}>
-                      <h4>
-                        <img src="../../assets/code-fork-symbol.svg" style={{ height: 25, width: 25, paddingRight: 5 }} />
-                        {branch}
-                      </h4>
-                    </div>
-                  </Col>
+                        <Col sm={12} md={8} style={{ marginTop: 10, marginBottom: 10 }}>
+                          <div className="border-box" style={{ width: "50%", padding: 5, display: "flex", flexDirection: "row", }}>
+                            <h4>
+                              <img src="../../assets/code-fork-symbol.svg" style={{ height: 25, width: 25, paddingRight: 5 }} />
+                              {branch}
+                            </h4>
+                          </div>
+                        </Col>
+                      </div> : null
+                  }
                   {/* /*********Select Branch********* */}
 
                   {/* /*********Select Branch********* */}
-                  <Col sm={12} md={4} style={{ marginTop: 10, marginBottom: 10 }}>
-                    <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Deploy Branch</h4>
-                  </Col>
+                  {
+                    (showRepoList || currentRepository.github.connected) ?
+                      <div>
+                        <Col sm={12} md={4} style={{ marginTop: 10, marginBottom: 10 }}>
+                          <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Deploy Branch</h4>
+                        </Col>
 
-                  <Col sm={12} md={8} style={{ marginTop: 10, marginBottom: 10 }}>
-                    <button className="border-button"> Deploy</button>
-                  </Col>
+                        <Col sm={12} md={8} style={{ marginTop: 10, marginBottom: 10 }}>
+                          <button className="border-button"> Deploy</button>
+                        </Col>
+
+                      </div>
+                      : null
+                  }
                   {/* /*********Select Branch********* */}
 
                 </Row> :
