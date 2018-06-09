@@ -43,23 +43,35 @@
 
 <style>
   /* width */
-  ::-webkit-scrollbar {
-      width: 5px;
-      height:3px
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 5px grey; 
-      border-radius: 10px;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-      background: #ff5722; 
-      border-radius: 10px;
-  }
-  
-  /* Handle on hover */
 
-  </style>
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 3px
+  }
+
+  /* Track */
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+
+  ::-webkit-scrollbar-thumb {
+    background: #ff5722;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+</style>
+
+<script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+</script>

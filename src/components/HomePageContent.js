@@ -1,17 +1,8 @@
 //from system
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { history } from '../route/history';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { withRouter, Route, Switch } from 'react-router-dom';
-import { makeRequest } from '../helper/internet'
-import { browserStore } from '../helper/collection'
-import * as appAction from '../store/action/appAction';
-import * as uploadAction from '../store/action/uploadAction';
-import { height } from 'window-size';
-
-import { Grid, Row, Col, Glyphicon, ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Grid, Row, Col} from 'react-bootstrap';
 
 class HomePageContent extends Component {
 
@@ -94,7 +85,7 @@ class HomePageContent extends Component {
           <h1 style={{ color: "#ff5722", fontWeight: "lighter", textAlign: "center", fontSize: "3em" }}>Quick Demo</h1>
           <Grid style={{ width: "60%", marginTop: 0 }}>
             <Row>
-              <h4 style={{ fontWeight: "lighter", textAlign: "left", fontSize: "2em", fontWeight: "bolder" }}>1 . Create new App</h4>
+              <h4 style={{ textAlign: "left", fontSize: "2em", fontWeight: "bolder" }}>1 . Create new App</h4>
             </Row>
             <Row>
               <p style={{ textAlign: "left" }}>Login to tocstack and click new app ,choose your preferred programming language and click create</p>
@@ -108,7 +99,7 @@ class HomePageContent extends Component {
         <div style={{ backgroundColor: "#FAFAFC", marginTop: 30 }}>
           <Grid style={{ width: "60%", paddingBottom: 30, paddingTop: 30 }}>
             <Row>
-              <h4 style={{ fontWeight: "lighter", textAlign: "left", fontSize: "2em", fontWeight: "bolder" }}>2 . Code your app</h4>
+              <h4 style={{textAlign: "left", fontSize: "2em", fontWeight: "bolder" }}>2 . Code your app</h4>
             </Row>
             <Row>
               <p style={{ textAlign: "left" }}>This is the best part ☺ ,given example is simple a helloworld app written in nodeJS</p>
@@ -122,7 +113,7 @@ class HomePageContent extends Component {
         <div style={{ marginTop: 30 }}>
           <Grid style={{ width: "60%" }}>
             <Row>
-              <h4 style={{ fontWeight: "lighter", textAlign: "left", fontSize: "2em", fontWeight: "bolder" }}>3 . Deploy with git</h4>
+              <h4 style={{textAlign: "left", fontSize: "2em", fontWeight: "bolder" }}>3 . Deploy with git</h4>
             </Row>
             <Row>
               <p style={{ textAlign: "left" }}>Automated deployment goodness, just git push to see your app/service online</p>
