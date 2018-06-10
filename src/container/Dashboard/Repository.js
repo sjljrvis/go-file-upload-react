@@ -149,7 +149,7 @@ class RepositoryContainer extends Component {
                 }
 
                 {active[2] ?
-                  <div>
+                  <div style={{height:"100vh"}}>
                     <h1>Metrics</h1>
                   </div> : null
                 }
