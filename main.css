@@ -115,6 +115,18 @@ option:after{
     flex-direction:  row; 
     justify-content: flex-end;
 }
+
+.input-box-repo{
+  width: -webkit-fill-available;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 4px;
+    border-color: #d8d7d7;
+    display: flex ;
+    flex-direction:  row; 
+    justify-content: flex-end;
+}
+
 .search-box-mobile{
   width: -webkit-fill-available;
     border-style: solid;
