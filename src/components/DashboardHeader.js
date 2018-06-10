@@ -18,6 +18,7 @@ class DashboardHeader extends Component {
       isLoggedIn: false,
       isLoading: true,
       showSearchBar: false,
+      userName:""
     }
   }
   handleLogout = () => {
@@ -43,9 +44,11 @@ class DashboardHeader extends Component {
       }
     }, 1000)
 
+    this.setState({ userName: browserStore.get("userName") });
+
   }
   render() {
-    const { isLoggedIn, isLoading, showSearchBar } = this.state;
+    const { isLoggedIn, isLoading, showSearchBar,userName } = this.state;
     return (
       <header>
         {
@@ -65,8 +68,9 @@ class DashboardHeader extends Component {
               <img style={{ width: "40%", height: "40%", backgroundColor: "#fff", borderRadius: "50%" }} src="../../assets/sejal.png" />
             </div>
           </a>
-          <a href="#"><h4>Profile</h4></a>
-          <a href="#"><h4>Settings</h4></a>
+          <a onClick={() => { history.push(`/user/${userName}`) }}><h4>Profile</h4></a>
+          <a onClick={() => { history.push('/user/settings') }}><h4>Settings</h4></a>
+          <a onClick={() => { history.push('/d') }}><h4>Console</h4></a>          
           <a href="#">  <button style={{ textAlign: "center" }} className="navbar-mobile-button "
             onClick={() => { this.handleLogout() }}
           > <Glyphicon glyph="log-out" style={{ color: "#fff" }} /> &nbsp;logout</button></a>
@@ -77,7 +81,7 @@ class DashboardHeader extends Component {
             <Grid>
               <Row className="show-grid">
                 <Col xs={4} md={4} >
-                  <div style={{ display: "flex", flexDirection: " row", justifyContent: "flex-start", height: 50,marginTop:6 }}>
+                  <div style={{ display: "flex", flexDirection: " row", justifyContent: "flex-start", height: 50, marginTop: 6 }}>
                     <img src="../../assets/rocket.svg" style={{ width: "30px", height: "30px", marginTop: 20, marginRight: 5 }}
                       onClick={() => { history.push("/") }}
                     />

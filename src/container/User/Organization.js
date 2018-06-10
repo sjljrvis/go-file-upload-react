@@ -37,7 +37,10 @@ class UserSettingsContainer extends Component {
     return (
       <div>
         <Grid>
-          <h1> Add and show organization</h1>
+          <div style={{ height: "100vh" }}>
+            <h2>Sorry folks !!!!!</h2>
+            <h4>Organisation and team support is still in development phase and will be online soon.....</h4>
+          </div>
         </Grid>
       </div>
     )
