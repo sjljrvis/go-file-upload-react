@@ -80,7 +80,7 @@ class AddRepositoryContainer extends Component {
                       <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Language</h4>
                     </Col>
                     <Col sm={12} md={8}>
-                      <div className="search-box">
+                      <div className="input-box-repo">
                         <select onChange={(e) => {
                           console.log(e.target.value)
                           this.setState({ language: e.target.value })
@@ -100,7 +100,7 @@ class AddRepositoryContainer extends Component {
                       <h4 style={{ color: "#ff5722", fontWeight: 400 }}>Description</h4>
                     </Col>
                     <Col sm={12} md={8}>
-                      <div className="search-box" style={{ height: 40, padding: 8 }}>
+                      <div className="input-box-repo" style={{ height: 40, padding: 8 }}>
                         <input placeholder="My first project" style={{ width: "-webkit-fill-available", borderStyle: "unset", outline: "none" }}
                           onChange={(e) => { this.setState({ description: e.target.value }) }}
                         ></input>
