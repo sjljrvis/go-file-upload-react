@@ -56,7 +56,7 @@ class AppContainer extends Component {
 					<Route exact path="/login" showNotification={this.showNotification} data={12} component={Login} />
 					<Route exact path="/new/app" component={AddRepository} />
 					<Route exact path="/register" component={Register} />
-					<Route exact path="/user/settings" component={Settings} />
+					<Route exact path="/settings/:userName" component={Settings} />
 					<Route exact path="/user/:userName" component={Profile} />
 					<Route exact path="/blog/:permaLink" component={Blog} />
 					<Route exact path="/oauth" component={Oauth} />

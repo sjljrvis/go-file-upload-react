@@ -1,22 +1,14 @@
 //from system
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withRouter, Route, Switch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { makeRequest } from '../../helper/internet'
-import { browserStore } from '../../helper/collection'
 import * as appAction from '../../store/action/appAction';
 import * as uploadAction from '../../store/action/uploadAction';
-import { height } from 'window-size';
-import { Grid, Row, Col, Tabs, Tab, Glyphicon, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { Grid, Row, Col, Glyphicon} from 'react-bootstrap';
 
 import DashboardHeader from '../../components/DashboardHeader'
 import Notification from '../../components/Notification'
 import Footer from '../../components/Footer'
-import Deploy from './Deploy'
-import Settings from './Settings'
-import OverView from './OverView';
 class AddRepositoryContainer extends Component {
 
   constructor(props) {

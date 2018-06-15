@@ -11,13 +11,6 @@ import { middleware } from './src/route/configureStore'
 import routes from './src/route/route';
 import reducer from './src/store/reducer';
 
-//import styles here
-
-
-
-//import js files
-import './src/style/js/popper.min';
-
 const store = createStore(reducer, middleware);
 window.onload = () => {
 	render(

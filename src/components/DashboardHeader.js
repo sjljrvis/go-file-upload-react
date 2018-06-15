@@ -69,7 +69,7 @@ class DashboardHeader extends Component {
             </div>
           </a>
           <a onClick={() => { history.push(`/user/${userName}`) }}><h4>Profile</h4></a>
-          <a onClick={() => { history.push('/user/settings') }}><h4>Settings</h4></a>
+          <a onClick={() => { history.push(`/settings/${userName}`) }}><h4>Settings</h4></a>
           <a onClick={() => { history.push('/d') }}><h4>Console</h4></a>          
           <a href="#">  <button style={{ textAlign: "center" }} className="navbar-mobile-button "
             onClick={() => { this.handleLogout() }}

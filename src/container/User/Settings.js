@@ -1,42 +1,39 @@
 //from system
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { withRouter, Route, Switch } from 'react-router-dom';
-import { makeRequest } from '../../helper/internet'
-import { browserStore } from '../../helper/collection'
 import * as appAction from '../../store/action/appAction';
 import * as uploadAction from '../../store/action/uploadAction';
-import { height } from 'window-size';
+import * as userAction from '../../store/action/userAction';
 import { Grid, Row, Col } from 'react-bootstrap';
-
 import DashboardHeader from '../../components/DashboardHeader'
 import Footer from '../../components/Footer'
 
 import UserAccountSettings from './UserAccountSettings'
 import Organization from './Organization'
 
+
+
 class UserSettingsContainer extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      active: [true, false],
+      active: [true, false]
     }
   }
-
 
   toggleClass = (i) => {
     let currentState = [false, false];
     currentState[i] = !currentState[i]
-    console.log(currentState)
     this.setState({ active: currentState });
   };
 
   componentDidMount() {
+    let { userName } = this.props.match.params;
+    this.props.userAction.getUserInfo(userName)
   }
-
+  
   render() {
     let { active } = this.state;
     return (
@@ -91,12 +88,14 @@ class UserSettingsContainer extends Component {
 
 const mapStateToProps = state => ({
   appReducer: state.appReducer,
-  uploadReducer: state.uploadReducer
+  uploadReducer: state.uploadReducer,
+  userReducer: state.userReducer
 });
 
 const mapDispatchToProps = dispatch => ({
   appAction: bindActionCreators(appAction, dispatch),
-  uploadAction: bindActionCreators(uploadAction, dispatch)
+  uploadAction: bindActionCreators(uploadAction, dispatch),
+  userAction: bindActionCreators(userAction, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {

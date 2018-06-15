@@ -1,7 +1,6 @@
-import { URL_BASE, URL_BASE_RASA } from './constant';
+import { URL_BASE,  } from './constant';
 import axios from 'axios';
 import { browserStore } from './collection'
-import { SSL_OP_CIPHER_SERVER_PREFERENCE } from 'constants';
 export const makeRequest = (endpoint, method = null, token = null, data = null) => {
 	const url = URL_BASE + endpoint;
 	const options = getOption(url, method, token, data);
