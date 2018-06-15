@@ -52,11 +52,14 @@ class OverViewContainer extends Component {
   }
 
   render() {
-    let { repositoryContainerInfo, logs, buildLogs, appLogs } = this.state;
+    let {logs, repositoryContainerInfo,buildLogs, appLogs } = this.state;
     let { currentRepository } = this.props.appReducer;
     let size = repositoryContainerInfo.HostConfig ? repositoryContainerInfo.HostConfig.ShmSize : 0;
     let ipAddress = repositoryContainerInfo.NetworkSettings ? repositoryContainerInfo.NetworkSettings.IPAddress : 0;
     let macAddress = repositoryContainerInfo.NetworkSettings ? repositoryContainerInfo.NetworkSettings.MacAddress : 0;
+
+    console.log(ipAddress,macAddress );
+
     return (
       <Grid>
         <Col sm={12} md={4}>

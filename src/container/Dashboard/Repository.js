@@ -25,9 +25,9 @@ class RepositoryContainer extends Component {
     super(props);
     this.state = {
       active: [true, false, false, false],
-      notification: { show: false, type: "success", message: "Success" }
+      notification: { show: false, type: "success", message: "Success" },
+      respositoryContainerInfo: { }
     };
-    respositoryContainerInfo: { }
   }
 
   addActiveClass() {

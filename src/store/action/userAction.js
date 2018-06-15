@@ -21,11 +21,10 @@ export const userInfoFail = (errMessage) => ({
 
 
 export const getUserInfo = (userName) => {
-  console.log(userName)
   return async dispatch => {
     try {
       dispatch(userInfoRequest());
-      let { data  :{data}} = await makeRequest(`/user/${userName}`, "GET", null, null);
+      let { data: { data } } = await makeRequest(`/user/${userName}`, "GET", null, null);
       dispatch(userInfoSuccess(data))
     } catch (e) {
       console.log(e)
@@ -34,3 +33,15 @@ export const getUserInfo = (userName) => {
   }
 }
 
+export const updateUserPassword = (payload) => {
+  return async dispatch => {
+    try {
+      dispatch(userInfoRequest());
+      let data = await makeRequest(`/admin/user`, "POST", null, payload);
+      console.log(data)
+    } catch (e) {
+      console.log(e)
+      dispatch(userInfoFail(e.message));
+    }
+  }
+}

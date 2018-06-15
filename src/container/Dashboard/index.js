@@ -1,21 +1,16 @@
 //from system
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { withRouter, Route, Switch } from 'react-router-dom';
-import { makeRequest } from '../../helper/internet'
 import { browserStore } from '../../helper/collection'
 import * as appAction from '../../store/action/appAction';
 import * as uploadAction from '../../store/action/uploadAction';
 import * as websocketAction from '../../store/action/websocketAction';
-import { height } from 'window-size';
 import { Grid, Row, Col, Glyphicon } from 'react-bootstrap';
 
 import { history } from '../../route/history';
 import DashboardHeader from '../../components/DashboardHeader';
 import Footer from '../../components/Footer';
-import { Certificate } from 'crypto';
 
 
 class DashboardContainer extends Component {
@@ -30,7 +25,6 @@ class DashboardContainer extends Component {
   }
 
   componentDidMount() {
-    let socketMessages = [];
     if (this.props.appReducer.isLoggedIn || browserStore.get("token")) {
       setTimeout(() => {
         this.props.appAction.getRepositories();
