@@ -10,7 +10,8 @@ import { Grid, Row, Col, Glyphicon, Checkbox } from 'react-bootstrap';
 import { history } from '../../route/history';
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import Notification from '../../components/Notification'
+import { show } from '../../components/CustomNotification'
+
 class LoginContainer extends Component {
 
   constructor(props) {
@@ -27,13 +28,6 @@ class LoginContainer extends Component {
     this.props.appAction.login(email, password)
   }
 
-  showNotification = (type, message, duration) => {
-    this.setState({ notification: { show: true, type: type, message: message } });
-    setTimeout(() => {
-      this.setState({ notification: { show: false, type: "", message: "" } }, () => { this.props.appAction.resetLoginError() })
-    }, duration)
-  }
-
   componentDidMount() {
   }
 
@@ -44,10 +38,13 @@ class LoginContainer extends Component {
     if (this.props.appReducer.errMessage == nextProps.appReducer.errMessage &&
       nextProps.appReducer.errMessage != "" &&
       !nextProps.appReducer.isLoggedIn) {
-      this.showNotification("error", nextProps.appReducer.errMessage, 3000);
+      show("error", nextProps.appReducer.errMessage, 3000);
+      setTimeout(() => {
+        this.props.appAction.resetLoginError()
+      }, 1000)
     }
     else if (nextProps.appReducer.isLoggedIn || (browserStore.get("token") != "")) {
-       this.props.history.push('/d')
+      this.props.history.push('/d')
     }
   }
 
@@ -61,8 +58,8 @@ class LoginContainer extends Component {
               <Row>
                 <Col md={4} md={8}>
                   <Row>
-                    <Col xs={12} sm={12} md={12}  style={{textAlign:"center"}}>
-                      <img src="../../assets/landing_new.png"/>
+                    <Col xs={12} sm={12} md={12} style={{ textAlign: "center" }}>
+                      <img src="../../assets/landing_new.png" />
                     </Col>
                     <Col xs={12} sm={12} md={12}>
                       <p style={{ marginTop: 10, textAlign: "center" }}>Built for Developers,Join and contibute to our community</p>
@@ -110,11 +107,6 @@ class LoginContainer extends Component {
         <footer>
           <Footer />
         </footer>
-        {
-          this.state.notification.show ?
-            <Notification type={this.state.notification.type} message={this.state.notification.message} show={this.state.notification.show} />
-            : null
-        }
       </div>
 
     )
