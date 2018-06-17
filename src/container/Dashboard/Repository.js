@@ -1,24 +1,17 @@
 //from system
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withRouter, Route, Switch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { makeRequest } from '../../helper/internet'
-import { browserStore } from '../../helper/collection'
 import * as appAction from '../../store/action/appAction';
 import * as uploadAction from '../../store/action/uploadAction';
 import * as websocketAction from '../../store/action/websocketAction';
-import { height } from 'window-size';
-import { Grid, Row, Col, Tabs, Tab } from 'react-bootstrap';
+import { Grid, Row, Col} from 'react-bootstrap';
 import { APP_URL_BASE } from '../../helper/constant';
 import DashboardHeader from '../../components/DashboardHeader'
-import Notification from '../../components/Notification'
 import Footer from '../../components/Footer'
 import Deploy from './Deploy'
 import Settings from './Settings'
 import OverView from './OverView';
-import { webSocket } from 'rxjs/observable/dom/webSocket';
 class RepositoryContainer extends Component {
 
   constructor(props) {
@@ -42,12 +35,6 @@ class RepositoryContainer extends Component {
     this.setState({ active: currentState });
   };
 
-  showNotification = (type, message, duration) => {
-    this.setState({ notification: { show: true, type: type, message: message } });
-    setTimeout(() => {
-      this.setState({ notification: { show: false, type: type, message: message } })
-    }, duration)
-  }
 
   handleAppUrl = () => {
     let { currentRepository } = this.props.appReducer;
@@ -136,7 +123,7 @@ class RepositoryContainer extends Component {
               <Row>
                 {active[0] ?
                   <div>
-                    <OverView showNotification={this.showNotification}
+                    <OverView
                       respositoryContainerInfo={respositoryContainerInfo}
                     />
                   </div> : null

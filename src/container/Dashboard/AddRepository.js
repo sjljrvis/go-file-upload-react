@@ -7,7 +7,6 @@ import * as uploadAction from '../../store/action/uploadAction';
 import { Grid, Row, Col, Glyphicon} from 'react-bootstrap';
 
 import DashboardHeader from '../../components/DashboardHeader'
-import Notification from '../../components/Notification'
 import Footer from '../../components/Footer'
 class AddRepositoryContainer extends Component {
 
@@ -15,7 +14,6 @@ class AddRepositoryContainer extends Component {
     super(props);
     this.state = {
       notification: { show: false, type: "success", message: "Success" },
-
       repositoryName: "",
       language: "nodeJS",
       description: ""
@@ -23,12 +21,6 @@ class AddRepositoryContainer extends Component {
     };
   }
 
-  showNotification = (type, message, duration) => {
-    this.setState({ notification: { show: true, type: type, message: message } });
-    setTimeout(() => {
-      this.setState({ notification: { show: false, type: type, message: message } })
-    }, duration)
-  }
 
   componentDidMount() {
   }
@@ -117,11 +109,6 @@ class AddRepositoryContainer extends Component {
         <footer>
           <Footer />
         </footer>
-        {
-          this.state.notification.show ?
-            <Notification type={this.state.notification.type} message={this.state.notification.message} show={this.state.notification.show} />
-            : null
-        }
       </div>
 
     )

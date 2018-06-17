@@ -1,17 +1,11 @@
 //from system
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { withRouter, Route, Switch } from 'react-router-dom';
-import { makeRequest } from '../../helper/internet'
-import { browserStore } from '../../helper/collection'
 import * as appAction from '../../store/action/appAction';
 import * as uploadAction from '../../store/action/uploadAction';
 import * as websocketAction from '../../store/action/websocketAction';
-import { height } from 'window-size';
-import { Grid, Row, Col, Tabs, Tab, Glyphicon } from 'react-bootstrap';
-import { black } from 'material-ui/styles/colors';
+import { Grid, Col, Glyphicon } from 'react-bootstrap';
 
 class OverViewContainer extends Component {
 
@@ -42,7 +36,6 @@ class OverViewContainer extends Component {
   buildProject = () => {
     let { repositoryName, path } = this.props.appReducer.currentRepository;
     this.setState({ appLogs: false, buildLogs: true })
-    this.props.showNotification("success", "Job added to queue", 4000)
     this.props.appAction.manualDeploy(repositoryName, path)
   }
 
