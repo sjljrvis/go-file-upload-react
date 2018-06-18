@@ -6,6 +6,8 @@ import * as appAction from '../../store/action/appAction';
 import * as uploadAction from '../../store/action/uploadAction';
 import * as websocketAction from '../../store/action/websocketAction';
 import { Grid, Col, Glyphicon } from 'react-bootstrap';
+import { show } from '../../components/CustomNotification'
+
 
 class OverViewContainer extends Component {
 
@@ -35,6 +37,7 @@ class OverViewContainer extends Component {
 
   buildProject = () => {
     let { repositoryName, path } = this.props.appReducer.currentRepository;
+    show("success","Job added to Queue",4000)
     this.setState({ appLogs: false, buildLogs: true })
     this.props.appAction.manualDeploy(repositoryName, path)
   }
