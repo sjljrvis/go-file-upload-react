@@ -54,8 +54,6 @@ class OverViewContainer extends Component {
     let ipAddress = repositoryContainerInfo.NetworkSettings ? repositoryContainerInfo.NetworkSettings.IPAddress : 0;
     let macAddress = repositoryContainerInfo.NetworkSettings ? repositoryContainerInfo.NetworkSettings.MacAddress : 0;
 
-    console.log(ipAddress,macAddress );
-
     return (
       <Grid>
         <Col sm={12} md={4}>

@@ -170,3 +170,16 @@ export const getRepositoryLogs = repositoryName => {
     }
   }
 }
+
+export const githubDeploy = repositoryName => {
+  return async dispatch => {
+    try {
+      dispatch(repositoryRequest());
+      let { data } = await makeRequest(`/repository/build/${repositoryName}`, "GET", null, null);
+      console.log(data)
+      // dispatch(getRepositoryContainerLogs(data.logs));
+    } catch (e) {
+      dispatch(repositoryFail(e.message));
+    }
+  }
+}

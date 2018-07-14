@@ -63,6 +63,11 @@ class DeployContainer extends Component {
   onFailure = response => {
   };
 
+  handleGithubDeploy = () => {
+    let { repositoryName } = this.props.appReducer.currentRepository;
+    this.props.appAction.githubDeploy(repositoryName)
+  }
+
   async componentDidMount() {
     let { currentRepository } = this.props.appReducer;
     try {
@@ -240,7 +245,9 @@ class DeployContainer extends Component {
                         </Col>
 
                         <Col sm={12} md={8} style={{ marginTop: 10, marginBottom: 10 }}>
-                          <button className="border-button"> Deploy</button>
+                          <button className="border-button"
+                            onClick={() => { this.handleGithubDeploy() }}
+                          > Deploy</button>
                         </Col>
 
                       </div>
