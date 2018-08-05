@@ -59,7 +59,6 @@ class Header extends Component {
             </Col>
           </Row>
         </Grid>
-        <hr style={{ borderColor: "#d8d7d7" }} />
       </header>
     )
   }
